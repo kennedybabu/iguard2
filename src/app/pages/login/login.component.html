@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row" style="height: 80vh;">
+        <div class="col-md-6 col-lg-5 pt-5 mx-auto" style="color: black;">
+            <form [formGroup]="loginForm" class="mx-auto px-4 py-3" (submit)="onSubmit()">
+                <h3 class="text-center">Admin Login</h3>
+                <p class="text-center">Please enter your details</p>
+                <div class="form-group mt-4">
+                    <label for="username">Username</label>
+                    <input (input)="clearError()" type="text" formControlName="username" class="form-control" name="username" id="username" placeholder="Username">
+                    <small *ngIf="username?.invalid && username?.touched" style="color: rgb(241, 135, 135);">Please enter a valid email</small>
+                </div>
+                <div class="form-group my-2">
+                    <label for="password" class="form-label">Password</label>
+                    <input (input)="clearError()" type="password" formControlName="password" class="form-control" id="password" placeholder="Enter password">
+                    <small *ngIf="password?.invalid && password?.touched" style="color: rgb(241, 135, 135);">Password is required</small>
+                </div>
+                <button [disabled]="loginForm.invalid" class="btn btn-success mt-3" style="width: 100%;">login</button> 
+                <small routerLink="/staff-login" style="font-size: small;color: #3f3f3f;cursor: pointer;">staff login</small>
+            </form>
+        </div>      
+    </div>
+</div>
+
