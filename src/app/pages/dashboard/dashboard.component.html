@@ -68,14 +68,20 @@
     </div>
 
     <div class="row my-3 justify-content-between px-3">
-        <div class="col-md-8 light-border">
-
+        <div class="col-md-3 light-border px-0">
+            <div class="row p-1">
+                <h2>Account Premises</h2>
+                <div class="p-1">
+                    <div  class="premise rounded-1 shadow-sm px-3 py-3" [ngClass]="{'active':premise.premise_id === showingPremiseId}" *ngFor="let premise of premises;let i = index">
+                        <p class="mb-0" style="color: #333333;"><span style="font-weight: bold;">{{i + 1}}. </span>{{premise.name}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-3 light-border px-0">
-            <mat-card class="demo-inline-calendar-card">
-                <mat-calendar [(selected)]="selected"></mat-calendar>
-            </mat-card>
+
+        <div class="col-md-8 light-border" style="height: 400px;">
+
         </div>
     </div>
 

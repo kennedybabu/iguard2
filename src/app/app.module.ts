@@ -22,6 +22,9 @@ import { CompaniesComponent } from './pages/companies/companies.component';
 import { StaffComponent } from './pages/staff/staff.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { DepartmentsComponent } from './pages/departments/departments.component';
+import { DatePipe } from '@angular/common';
+
+
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { DepartmentsComponent } from './pages/departments/departments.component'
     MatNativeDateModule
   ],
   providers: [
+    DatePipe,
     {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

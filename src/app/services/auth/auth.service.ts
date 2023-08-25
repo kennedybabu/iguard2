@@ -28,7 +28,6 @@ export class AuthService {
     }
     return this.http.post('https://iguardbe.helapay.africa/api/adminAuthentication', jsonObject).pipe(
       map((response:any) => {
-        console.log(response)
           let userObject = 
           {
             'user': response.message.user, 
@@ -37,8 +36,10 @@ export class AuthService {
             'accountId': response.message.accountId, 
             'userId': response.message.userId
           }
+
+          let modifiedObject = JSON.stringify(userObject)
           
-          this.userDataSubject.next(userObject)  
+          this.userDataSubject.next(modifiedObject)  
           localStorage.setItem('ulpSaH5wx1pO!E', JSON.stringify(userObject))
           return response
       })

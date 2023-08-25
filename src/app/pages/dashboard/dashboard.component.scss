@@ -35,5 +35,19 @@
             height: 55px;
             cursor: pointer;
         }
+
+        .premise {
+            border: 1px solid rgb(226, 226, 226);
+            margin: .5rem 0;
+            cursor: pointer;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+
+        .active {
+            background-color: #a2d2ff;
+        }
+
     }
 }

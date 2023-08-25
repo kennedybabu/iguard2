@@ -15,7 +15,6 @@ export class AppComponent {
     this.authService.userData$.subscribe((res) => {
 
       this.user = JSON.parse(res)
-      console.log(this.user)
     })
   }
 
