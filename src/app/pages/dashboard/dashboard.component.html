@@ -1,1 +1,111 @@
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, deserunt. Necessitatibus provident libero repellat amet nam eum quisquam iusto fuga?
+<div class="container-fluid">
+    <div class="row">
+        <h1>Dashboard</h1>
+    </div>
+
+    <div class="row">
+        <div class="row cards mt-2">
+            <div class="card light-border shadow-sm" style="cursor: pointer;">
+                <div (click)="change()" class="d-flex h-100 justify-content-between align-items-center">
+                    <div class="rounded-full d-flex align-items-center justify-content-center" style="border-radius: 100%;width: 60px;height: 60px;background-color: #8ecae66c;">
+                        <i  class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem;color: #7ecff5;"></i>
+                    </div>
+                    <div class="h-100 d-flex justify-content-center align-items-center flex-column">
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">23</h3>
+                        <p class="light-text">Companies</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- <div  class="card shadow-sm" routerLink="/accounts" style="cursor: pointer;">
+                <div class="d-flex h-100 justify-content-between align-items-center">
+                    <div class="rounded-full d-flex align-items-center justify-content-center" style="border-radius: 100%;width: 60px;height: 60px;background-color: #ffd6ffb2;">
+                        <i class="bi bi-person-bounding-box" style="font-size: 1.5rem;color: #fc8bfc;"></i>
+                    </div>
+                    <div class="h-100 d-flex justify-content-center align-items-center flex-column">
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">800</h3>
+                        <p class="light-text">Accounts</p>
+                    </div>
+                </div>
+            </div> -->
+    
+            <div  class="card light-border shadow-sm" style="cursor: pointer;">
+                <div class="d-flex h-100 justify-content-between align-items-center">
+                    <div class="rounded-full d-flex align-items-center justify-content-center" style="border-radius: 100%;width: 60px;height: 60px;background-color: #ffd6ffb2;">
+                        <i class="bi bi-buildings-fill" style="font-size: 1.5rem;color: #fc8bfc;"></i>
+                    </div>
+                    <div class="h-100 d-flex justify-content-center align-items-center flex-column">
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">300</h3>
+                        <p class="light-text">Premises</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card light-border shadow-sm" style="cursor: pointer;">
+                <div class="d-flex h-100 justify-content-between align-items-center">
+                    <div class="rounded-full d-flex align-items-center justify-content-center" style="border-radius: 100%;width: 60px;height: 60px;background-color: #80ed9979;">
+                        <i class="bi bi-people-fill" style="font-size: 1.5rem; color: #45e069;"></i>
+                    </div>
+                    <div class="h-100 d-flex justify-content-center align-items-center flex-column">
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">20</h3>
+                        <p class="light-text">Guards</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card light-border shadow-sm" style="cursor: pointer;">
+                <div class="d-flex h-100 justify-content-between align-items-center">
+                    <div class="rounded-full d-flex align-items-center justify-content-center" style="border-radius: 100%;width: 60px;height: 60px;background-color: #ff8fab67;">
+                        <i class="bi bi-people-fill" style="font-size: 1.5rem;color: #fc5c84;"></i>
+                    </div>
+                    <div class="h-100 d-flex justify-content-center align-items-center flex-column">
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">50</h3>
+                        <p class="light-text">Staff</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3 justify-content-between px-3">
+        <div class="col-md-8 light-border">
+
+        </div>
+
+        <div class="col-md-3 light-border px-0">
+            <mat-card class="demo-inline-calendar-card">
+                <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row my-2 justify-content-between px-3">
+        <div class="col-md-5 light-border">
+            <h3>Appointments</h3>
+            <div>
+                <div class="appointment shadow-sm my-3 p-3">
+                    <div>
+                        <p class="mb-0 dark-text">John Doe</p>
+                        <small class="light-text">Lorem ipsum dolor sit amet.</small>
+                    </div>
+                </div>
+
+                <div class="appointment shadow-sm my-3 p-3">
+                    <div>
+                        <p class="mb-0 dark-text">John Doe</p>
+                        <small class="light-text">Lorem ipsum dolor sit amet.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 light-border">
+            <h3>Leave Requests</h3>
+            <div>
+                <div class="leave-request shadow my-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

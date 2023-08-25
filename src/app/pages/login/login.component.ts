@@ -33,26 +33,17 @@ export class LoginComponent {
 
 
   onSubmit(){
-    this.authService.login(this.loginForm.value).subscribe((response) => {
-      if(response?.statusCode === 702){
-        let userObject = 
-        {
-          'user': response.message.user, 
-          'permissions': response.message.permissions,
-          'token': response.message.accessToken, 
-          'accountId': response.message.accountId, 
-          'userId': response.message.userId
-        }
-        
-        let objectString = JSON.stringify(userObject) 
-        // const encryptedObject = CryptoJs.AES.encrypt(objectString, KEY).toString()
-        this.userDataSubject.next(userObject)  
-        console.log(userObject)      
-        // localStorage.setItem('ulpSaH5wx1pO!E', encryptedObject)
+    console.log('called')
+    this.authService.login(this.loginForm.value).subscribe((res:any) => {
+      if(res.statusCode === 702) {
+        console.log('done')
         this.router.navigate(['/'])
       }
+    },(error) => {
+
     })
   }
+ 
 
   get username(){
     return this.loginForm.get('username')

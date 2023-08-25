@@ -1,0 +1,39 @@
+.container-fluid {
+    min-height: 99vh;
+    padding: 1rem;
+
+    .row {
+
+        .cards {
+            width: 100%;
+            justify-content: space-between;
+            margin: 0 auto;
+
+
+            .card {
+                max-width: 24%;
+                height: 150px;
+                background-color: #ffffff;
+                border-radius: 0;
+
+                h3 {
+                    font-weight: 600;
+                }
+            }
+        }
+
+
+        .appointment {
+            border-left: 2px solid red;
+            height: 55px;
+            cursor: pointer;
+        }
+
+
+        .leave-request {
+            border-left: 2px solid rgb(21, 255, 0);
+            height: 55px;
+            cursor: pointer;
+        }
+    }
+}
