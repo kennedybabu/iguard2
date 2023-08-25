@@ -41,6 +41,12 @@
                     right: 100px;
                 }
             }
+
+
+            #window {
+                height: calc(100vh);
+                overflow-y: scroll;
+            }
         }
 
 

@@ -23,6 +23,7 @@ import { StaffComponent } from './pages/staff/staff.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { DepartmentsComponent } from './pages/departments/departments.component';
 import { DatePipe } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -33,7 +34,8 @@ import { DatePipe } from '@angular/common';
     DashboardComponent,
     CompaniesComponent,
     StaffComponent,
-    DepartmentsComponent
+    DepartmentsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
