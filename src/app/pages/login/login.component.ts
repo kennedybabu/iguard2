@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { KEY } from 'src/key';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/shared/notification.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   constructor(private authService:AuthService,
-    private router:Router){
+    private router:Router,
+    private notificationService:NotificationService){
 
   }
 
@@ -36,11 +38,12 @@ export class LoginComponent {
     console.log('called')
     this.authService.login(this.loginForm.value).subscribe((res:any) => {
       if(res.statusCode === 702) {
-        console.log('done')
+        this.notificationService.sendSuccessMessage('logged in successfully')
         this.router.navigate(['/'])
       }
     },(error) => {
-
+      console.log(error)
+      this.notificationService.sendErrorMessage('something went wrong try again')
     })
   }
  

@@ -74,16 +74,32 @@
               <div style="position: relative;padding-top: 2.5rem;">
                 <p (click)="toggleNavbar()" style="cursor: pointer;font-size: 30px;position: absolute;top: 1rem;left: 2rem;" class="mb-0"><i class="bi bi-list"></i></p>
                 <router-outlet></router-outlet>
+
+                <!-- notifications -->
+
+
+                <!--error notification -->
+                <div *ngIf="errorNotification" class="error msg mat-elevation-z8 light-text d-flex p-2">
+                    <div class="px-2">
+                        <i style="font-size: 1.2rem;" class="dark-text bi bi-exclamation-triangle"></i>
+                    </div>
+                    <p class="mb-0" style="letter-spacing: 1px;">
+                        {{errorNotification}}, try again
+                    </p>
+                </div>
+
+                <!-- success notification -->
+                <div *ngIf="successNotification" class="success msg mat-elevation-z8 light-text d-flex p-2">
+                    <div class="px-2">
+                        <i style="font-size: 1.2rem;" class="bi bi-check2-circle dark-text"></i> 
+                    </div>
+                    <p class="mb-0" style="letter-spacing: 1px;">
+                        {{successNotification}}
+                    </p>
+                </div>
               </div>
           </div>
       </mat-drawer-content>
   </mat-drawer-container>
-
-  <!-- <div *ngIf="errorMessage" class="alrt error shadow-sm rounded">
-      <p class="mb-0">{{errorMessage}}</p>
-  </div>
-  <div *ngIf="successMsg" class="alrt success shadow-sm rounded">
-      <p class="mb-0">{{successMsg}}</p>
-  </div> -->
 </div>
 

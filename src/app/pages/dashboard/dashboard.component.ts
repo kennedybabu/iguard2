@@ -41,12 +41,13 @@ export class DashboardComponent implements OnInit {
         this.premises = res.message 
 
         if(localStorage.getItem('currentPremise')) {
-          this.showingPremiseId = localStorage.getItem('currentPremise')
+          this.currentPremise = localStorage.getItem('currentPremise')
+          this.showingPremiseId = this.currentPremise.premise_id
           console.log(this.showingPremiseId)
         } else {
           this.currentPremise = this.premises[0] 
           this.showingPremiseId = this.currentPremise.premise_id
-          localStorage.setItem('currentPremise', this.currentPremise.premise_id)
+          localStorage.setItem('currentPremise', JSON.stringify(this.currentPremise))
         }
 
         this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {

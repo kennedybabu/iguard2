@@ -5,6 +5,45 @@
         position: relative;
 
 
+
+        mat-drawer-content {
+
+            .msg {
+                position: fixed;
+                top: 150px;
+                right: 100px;
+                z-index: 20000;
+                height: 70px;
+                width: 300px;
+                animation: fadeIn .5s;
+                transition: all ease-in-out .5s;
+            }
+
+            .error {
+                border-left: 5px solid rgb(250, 31, 31);
+                background-color: rgb(255, 248, 248);
+            }
+
+            .success {
+                border-left: 5px solid rgb(31, 250, 42);
+                background-color: rgb(255, 248, 248);
+            }
+
+
+            @keyframes fadeIn {
+                0% {
+                    right: -200px;
+                }
+                75% {
+                    right: 120px;
+                }
+                100% {
+                    right: 100px;
+                }
+            }
+        }
+
+
         mat-drawer {
             position: fixed;
             top: 0;

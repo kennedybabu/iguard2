@@ -14,7 +14,7 @@
                     <input (input)="clearError()" type="password" formControlName="password" class="form-control" id="password" placeholder="Enter password">
                     <small *ngIf="password?.invalid && password?.touched" style="color: rgb(241, 135, 135);">Password is required</small>
                 </div>
-                <button [disabled]="loginForm.invalid" class="btn btn-success mt-3" style="width: 100%;">login</button> 
+                <button [disabled]="loginForm.invalid" class="btn btn-outline-primary mt-3" style="width: 100%;border-radius: 0;">login</button> 
                 <small routerLink="/staff-login" style="font-size: small;color: #3f3f3f;cursor: pointer;">staff login</small>
             </form>
         </div>      
