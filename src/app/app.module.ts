@@ -24,7 +24,10 @@ import { AuthInterceptor } from './auth.interceptor';
 import { DepartmentsComponent } from './pages/departments/departments.component';
 import { DatePipe } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { MatSortModule} from '@angular/material/sort';
+import { CompanyComponent } from './pages/company/company.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { CompanyStaffComponent } from './components/company/company-staff/company-staff.component';
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { FooterComponent } from './components/footer/footer.component';
     CompaniesComponent,
     StaffComponent,
     DepartmentsComponent,
-    FooterComponent
+    FooterComponent,
+    CompanyComponent,
+    CompanyStaffComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MatInputModule,
     MatDatepickerModule,
     MatCardModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [
     DatePipe,

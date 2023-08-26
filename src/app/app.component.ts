@@ -40,9 +40,9 @@ export class AppComponent {
     this.getSuccessMsgSub = this.notificationService.getSuccessMsg().subscribe((messsage) => {
       this.successNotification = messsage
 
-      setTimeout(() =>{
+      setTimeout(() => {
         this.successNotification = ''
-      },2000)
+      }, 2000)
     }) 
 
 
