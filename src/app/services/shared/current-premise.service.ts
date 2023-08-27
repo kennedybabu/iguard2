@@ -12,7 +12,7 @@ export class CurrentPremiseService {
     }
   }
 
-  private currentPremiseSubject: BehaviorSubject<any> = new BehaviorSubject(null)
+  public currentPremiseSubject: BehaviorSubject<any> = new BehaviorSubject(null)
   premiseData$: Observable<any> = this.currentPremiseSubject.asObservable()
 
   get premiseData(){

@@ -7,11 +7,12 @@ import { StaffComponent } from './pages/staff/staff.component';
 import { DepartmentsComponent } from './pages/departments/departments.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
+import { RoleBaseGuard  as RoleGuard } from './_guard/role-base.guard';
 
 const routes: Routes = [
   {path:'', redirectTo: '/dashboard', pathMatch: 'full'},
   {
-    path: 'dashboard', component: DashboardComponent
+    path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard]
   },
   {path: 'login', component: LoginComponent},
   {

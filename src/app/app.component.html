@@ -4,10 +4,8 @@
           <mat-nav-list>
               <a routerLinkActive="active" routerLink="dashboard" [routerLinkActiveOptions]="{ exact: true }"><i class="bi bi-house-fill mx-3"></i>Dashboard</a>
               <a routerLinkActive="active" routerLink="accounts"><i class="bi bi-people-fill mx-3"></i>Accounts</a>
-              <a routerLinkActive="active" routerLink="companies"><i class="bi bi-grid-3x3-gap-fill mx-3"></i>Companies</a>    
-              <a routerLinkActive="active"><i class="bi bi-buildings-fill mx-3"></i>Premises</a>    
-              <a routerLinkActive="active"><i class="bi bi-people-fill mx-3"></i>Guards</a>    
-              <a routerLinkActive="active"><i class="bi bi-people-fill mx-3"></i>Staff</a>    
+              <a routerLinkActive="active" (click)="viewPremiseCompanies()"><i class="bi bi-grid-3x3-gap-fill mx-3"></i>Companies</a>    
+              <a routerLinkActive="active" ><i class="bi bi-buildings-fill mx-3"></i>Premises</a>    
               <a routerLinkActive="active" routerLink="login"><i class="bi bi-people-fill mx-3"></i>Logout</a>    
               <div *ngIf="user">
                     <div class="d-flex align-items-center" style="cursor: pointer;"  id="user-profile">

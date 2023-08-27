@@ -3,6 +3,8 @@ import { AuthService } from './services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { NotificationService } from './services/shared/notification.service';
 import { NavigationHistoryService } from './services/shared/navigation-history.service';
+import { CurrentPremiseService } from './services/shared/current-premise.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,45 +13,60 @@ import { NavigationHistoryService } from './services/shared/navigation-history.s
 })
 export class AppComponent {
 
-  user!:any 
-  private getSuccessMsgSub!: Subscription
-  private getErrorMsgSub!: Subscription
-
+  user!:any
   errorNotification!: string
   successNotification!: string
+
+  currentPremise!: any 
+  currentPremiseId!: number
+
 
 
 
   constructor(
     public navigationHistoryService: NavigationHistoryService,
     private authService:AuthService,
-    private notificationService:NotificationService){
+    private notificationService:NotificationService,
+    private currentPremiseService: CurrentPremiseService,
+    private router:Router
+    ){
 
-      this.navigationHistoryService.startSaveHistory()
+    this.navigationHistoryService.startSaveHistory()
 
     this.authService.userData$.subscribe((res) => {
-
       this.user = JSON.parse(res)
     })
 
 
 
-    //subscribe to success and error messages
-    this.getErrorMsgSub = this.notificationService.getMessage().subscribe((message) => {
-      this.errorNotification = message
+    this.currentPremiseService.premiseData$.subscribe((res) => {
+      this.currentPremise = JSON.parse(res)
+      this.currentPremiseId = this.currentPremise?.premise_id
+      
+      console.log(res, 'trials', this.currentPremise)
 
-      setTimeout(() => {
-        this.errorNotification = ''
-      }, 2000)
     })
 
-    this.getSuccessMsgSub = this.notificationService.getSuccessMsg().subscribe((messsage) => {
-      this.successNotification = messsage
 
-      setTimeout(() => {
-        this.successNotification = ''
-      }, 2000)
-    }) 
+
+
+
+    //subscribe to success and error messages
+    this.notificationService.getMessage().subscribe((message) => {
+        this.errorNotification = message
+
+        setTimeout(() => {
+          this.errorNotification = ''
+        }, 2000)
+      })
+
+    this.notificationService.getSuccessMsg().subscribe((messsage) => {
+        this.successNotification = messsage
+
+        setTimeout(() => {
+          this.successNotification = ''
+        }, 2000)
+      }) 
 
 
   }
@@ -64,6 +81,11 @@ export class AppComponent {
 
   logout(){
     this.authService.logout()
+  }
+
+
+  viewPremiseCompanies() {
+    this.router.navigate(['companies', this.currentPremiseId])
   }
 
 

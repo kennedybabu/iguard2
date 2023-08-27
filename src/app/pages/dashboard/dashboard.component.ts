@@ -7,6 +7,7 @@ import { GetPremiseAppointmentsService } from 'src/app/services/appointments/get
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GetPremiseLeaveRequestsService } from 'src/app/services/leave-req/get-premise-leave-requests.service';
 import { GetAllPremisesService } from 'src/app/services/premise/get-all-premises.service';
+import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService,
     private getPremiseAppointmntService:GetPremiseAppointmentsService,
     private getPremiseLeaveReqServices: GetPremiseLeaveRequestsService,
+    private currentPremiseService:CurrentPremiseService
     ){
       this.authService.userData$.subscribe((res) => {
         let user = res
@@ -74,13 +76,16 @@ export class DashboardComponent implements OnInit {
 
         if(item) {
           this.currentPremise = JSON.parse(item)
-          this.userCurrentPremiseSubject.next(this.currentPremise)
+          this.currentPremiseService.currentPremiseSubject.next(JSON.stringify(this.currentPremise))
+          // this.userCurrentPremiseSubject.next(this.currentPremise)
           this.showingPremiseId = this.currentPremise.premise_id
           console.log(this.showingPremiseId)
         } else {
           this.currentPremise = this.premises[0] 
           this.showingPremiseId = this.currentPremise.premise_id
-          this.userCurrentPremiseSubject.next(this.currentPremise)
+          console.log(this.showingPremiseId)
+          this.currentPremiseService.currentPremiseSubject.next(this.currentPremise)
+          // this.userCurrentPremiseSubject.next(this.currentPremise)
           localStorage.setItem('currentPremise', JSON.stringify(this.currentPremise))
         }        
       }
