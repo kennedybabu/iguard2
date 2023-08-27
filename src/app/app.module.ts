@@ -28,6 +28,7 @@ import { MatSortModule} from '@angular/material/sort';
 import { CompanyComponent } from './pages/company/company.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CompanyStaffComponent } from './components/company/company-staff/company-staff.component';
+import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { CompanyStaffComponent } from './components/company/company-staff/compan
     DepartmentsComponent,
     FooterComponent,
     CompanyComponent,
-    CompanyStaffComponent
+    CompanyStaffComponent,
+    StaffProfileComponent
   ],
   imports: [
     BrowserModule,

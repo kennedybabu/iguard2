@@ -5,4 +5,12 @@
     z-index: 20;
     background-color: #fefefe;
     padding: .5rem;    
+    left: 0;
+    right: 0;
+
+    ul {
+        li {
+            cursor: pointer;
+        }
+    }
 }

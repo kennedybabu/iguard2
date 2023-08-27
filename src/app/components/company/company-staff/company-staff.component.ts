@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Staff } from 'src/app/model/staff';
 import { GetCompanyStaffService } from 'src/app/services/company/get-company-staff.service';
 
@@ -14,7 +15,9 @@ export class CompanyStaffComponent implements OnInit, AfterViewInit {
 
   @Input() companyId!: number
 
-  constructor(private getCompanyStaffService:GetCompanyStaffService,
+  constructor(
+    private getCompanyStaffService:GetCompanyStaffService,
+    private router:Router
     ){}
 
   displayedColumns: string[] = ['firstName', 'msisdn', 'email', 'designation'];
@@ -43,6 +46,11 @@ export class CompanyStaffComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  viewStaffProfile(id: number){
+    this.router.navigate(['staff-profile', id])
   }
 
 

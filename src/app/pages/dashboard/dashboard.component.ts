@@ -17,12 +17,13 @@ export class DashboardComponent implements OnInit {
 
   selected!: Date | null;
   activeUser!: any
-  premises: Premise [] = []
+  premises: any [] = []
   currentPremise!: any
   showingPremiseId!: any
-  premiseAppointments: Appointment [] = []
+  premiseAppointments: any [] = []
   currentDate!: any
   storedPremise!: any
+  premiseId!: number
 
 
   private userCurrentPremiseSubject: BehaviorSubject<any> = new BehaviorSubject(null)
@@ -59,6 +60,8 @@ export class DashboardComponent implements OnInit {
 
     this.currentPremiseData$.subscribe((res) => {
        this.storedPremise = res
+
+       this.premiseId = this.storedPremise?.premise_id
     })
 
 
@@ -83,14 +86,15 @@ export class DashboardComponent implements OnInit {
       }
 
 
-      this.getPremiseAppointmntService.getPremiseAppointments(this.storedPremise.premise_id).subscribe((res) => {
-        this.premiseAppointments = res.message
-      })
+      // this.getPremiseAppointmntService.getPremiseAppointments(this.premiseId).subscribe((res) => {
+      //   console.log(res)
+      //   this.premiseAppointments = res.message
+      // })
 
 
-      this.getPremiseLeaveReqServices.getDetails(this.currentDate, this.storedPremise.premise_id).subscribe((res) => {
-        console.log(res)
-      })
+      // this.getPremiseLeaveReqServices.getDetails(this.currentDate, this.storedPremise.premise_id).subscribe((res) => {
+      //   console.log(res)
+      // })
 
       
     })    

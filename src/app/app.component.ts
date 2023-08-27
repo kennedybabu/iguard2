@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { NotificationService } from './services/shared/notification.service';
+import { NavigationHistoryService } from './services/shared/navigation-history.service';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +20,13 @@ export class AppComponent {
 
 
 
-  constructor(private authService:AuthService,
+  constructor(
+    public navigationHistoryService: NavigationHistoryService,
+    private authService:AuthService,
     private notificationService:NotificationService){
+
+      this.navigationHistoryService.startSaveHistory()
+
     this.authService.userData$.subscribe((res) => {
 
       this.user = JSON.parse(res)

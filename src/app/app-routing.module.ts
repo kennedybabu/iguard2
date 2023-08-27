@@ -6,6 +6,7 @@ import { CompaniesComponent } from './pages/companies/companies.component';
 import { StaffComponent } from './pages/staff/staff.component';
 import { DepartmentsComponent } from './pages/departments/departments.component';
 import { CompanyComponent } from './pages/company/company.component';
+import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {
     path: 'departments', component: DepartmentsComponent
   },
-  { path: 'company/:id', component: CompanyComponent}
+  { path: 'company/:id', component: CompanyComponent},
+  {path:'staff-profile/:id', component: StaffProfileComponent} 
 ];
 
 @NgModule({
