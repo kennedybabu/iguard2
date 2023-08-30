@@ -29,6 +29,8 @@ import { CompanyComponent } from './pages/company/company.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CompanyStaffComponent } from './components/company/company-staff/company-staff.component';
 import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
+import { DateRangeComponent } from './components/shared/date-range/date-range.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { StaffProfileComponent } from './pages/staff-profile/staff-profile.compo
     FooterComponent,
     CompanyComponent,
     CompanyStaffComponent,
-    StaffProfileComponent
+    StaffProfileComponent,
+    DateRangeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { StaffProfileComponent } from './pages/staff-profile/staff-profile.compo
     MatCardModule,
     MatNativeDateModule,
     MatSortModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
   ],
   providers: [
     DatePipe,

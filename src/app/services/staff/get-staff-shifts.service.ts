@@ -10,9 +10,9 @@ export class GetStaffShiftsService {
   constructor(private http:HttpClient) { }
 
 
-  getTimedDetails(staffId: number, formvalue: any): Observable<any> { 
-    const start = formvalue.dateFrom 
-    const end = formvalue.dateTo 
+  getTimedDetails(staffId: number, startDate: any, endDate:any): Observable<any> { 
+    const start = startDate
+    const end = endDate
 
     const startTime = new Date(start)
     const endTime = new Date(end)
@@ -38,6 +38,7 @@ export class GetStaffShiftsService {
         },
         "requestService":"GET_STAFF_SHIFT_DETAILS"
     }
+    console.log(jsonObject)
     return this.http.post('https://iguardbe.helapay.africa/api/GateGuard', jsonObject)
   }
 

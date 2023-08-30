@@ -27,7 +27,7 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
     private currentPremiseService:CurrentPremiseService,
     private router:Router
   ){
-    this.currentPremise = JSON.parse(this.currentPremiseService.premiseData)
+    this.currentPremise = this.currentPremiseService.premiseData
     console.log(this.currentPremise.name)
   }
 

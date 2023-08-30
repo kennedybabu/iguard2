@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
-import { Subscription } from 'rxjs';
 import { NotificationService } from './services/shared/notification.service';
 import { NavigationHistoryService } from './services/shared/navigation-history.service';
 import { CurrentPremiseService } from './services/shared/current-premise.service';
@@ -46,8 +45,6 @@ export class AppComponent {
       console.log(res, 'trials', this.currentPremise)
 
     })
-
-
 
 
 

@@ -1,10 +1,3 @@
-// import { CanActivateFn } from '@angular/router';
-
-// export const roleBaseGuard: CanActivateFn = (route, state) => {
-//   return true;
-// };
-
-
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot,CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router"; 
 import { Observable } from "rxjs";

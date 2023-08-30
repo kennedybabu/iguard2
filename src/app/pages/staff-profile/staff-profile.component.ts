@@ -4,9 +4,15 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Shift } from 'src/app/model/shift';
-import { Staff } from 'src/app/model/staff';
 import { GetStaffDetailsService } from 'src/app/services/staff/get-staff-details.service';
 import { GetStaffShiftsService } from 'src/app/services/staff/get-staff-shifts.service';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DateRangeComponent } from 'src/app/components/shared/date-range/date-range.component';
+import { FormControl, FormGroup } from '@angular/forms';
+// import { DateRange } from '@angular/material/datepicker';
+// import { DateRange } from 'src/app/components/shared/date-range'
+
+
 
 @Component({
   selector: 'app-staff-profile',
@@ -23,7 +29,8 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
   constructor(
     private getStaffDetailsService:GetStaffDetailsService,
     private route:ActivatedRoute,
-    private getStaffShiftsService:GetStaffShiftsService
+    private getStaffShiftsService:GetStaffShiftsService,
+    private dialog: MatDialog
     ){}
 
   displayedColumns: string[] = ['date', 'checkin', 'checkout', 'work_hrs', 'status'];
@@ -51,8 +58,6 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
     this.getStaffShiftsService.getDetails(this.staffId, currentDate).subscribe((res) => {
       this.staffShifts = res.data
       this.dataSource.data = res.data
-
-      console.log(res.data)
     })
     
   }
@@ -86,6 +91,41 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
     const minutes = Math.floor((diffMilliseconds % (1000 * 60 * 60)) / (1000 * 60))
 
     return `${hours}h ${minutes}m`
+
+  }
+
+  
+  openDialog() {
+    const dialogRef = this.dialog.open(DateRangeComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+  // onDateRangeSelected(dateRange: { start: string, end: string}) {
+  //   console.log(dateRange)
+  // }
+
+
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+
+  submitDate(){
+    const startDate = this.range.controls['start'].value 
+    const endDate = this.range.controls['end'].value
+    
+    console.log(startDate, endDate)
+
+    this.getStaffShiftsService.getTimedDetails(this.staffId, startDate, endDate).subscribe((res) => {
+      console.log(res)
+      this.staffShifts = res.data
+      this.dataSource.data = res.data
+    })
 
   }
 
