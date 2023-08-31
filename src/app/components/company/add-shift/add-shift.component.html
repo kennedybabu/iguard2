@@ -1,1 +1,80 @@
-<p>add-shift works!</p>
+<div class="container p-3">
+    <h1 class="text-center fw-bold">Create Staff Shift </h1>
+    <form [formGroup]="createShiftForm" (submit)="onStaffShiftSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="email" formControlName="name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" formControlName="description" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label for="start">Start</label>
+                    <input type="datetime-local" formControlName="start" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="end">End</label>
+                    <input type="datetime-local" formControlName="end" class="form-control">
+                </div>
+            </div>
+        </div>
+ 
+       <div class="form-group mb-3">
+            <label>Department</label>
+            <select  class="form-select" formControlName="department">
+                <option value="" disabled>Choose...</option>
+                <option *ngFor="let dept of companyDepartments"  [ngValue]="dept">{{dept.department_name}}</option>             
+            </select>
+        </div>          
+        <div class="row my-2">
+            <p>Repeat days</p>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="mondayChecked" (change)="updateSelectedDays($event)" name="day" value="monday"> Monday
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="tuesdayChecked" (change)="updateSelectedDays($event)" name="day" value="tuesday"> Tuesday
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="wednesdayChecked" (change)="updateSelectedDays($event)" name="day" value="wednesday"> Wednesday
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="thursdayChecked" (change)="updateSelectedDays($event)" name="day" value="thursday"> Thursday
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="fridayChecked" (change)="updateSelectedDays($event)" name="day" value="friday"> Friday
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="saturdayChecked" (change)="updateSelectedDays($event)" name="day" value="saturday"> Saturday
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="sundayChecked" (change)="updateSelectedDays($event)" name="day" value="sunday"> Sunday
+                </label>
+                <br>
+            </div>            
+        </div>
+        <div class="form-group">
+            <div>
+                <label>
+                    <input id="night" type="radio" formControlName="type" name="type" value="night">Night
+                </label>
+                <label>
+                    <input id="day" type="radio" formControlName="type" name="type" value="day">Day
+                </label>
+            </div>
+        </div>
+        <button class="btn btn-outline-success btn-sm my-3">Add Staff Shift</button>
+    </form>
+</div>
+

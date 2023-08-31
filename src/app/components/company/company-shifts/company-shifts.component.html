@@ -1,6 +1,7 @@
 <div>
     <div class="row p-2">
-        <div class="d-flex flex-row-reverse">
+        <div class="d-flex flex-row-reverse align-items-end">
+            <button class="mx-1 primary-btn" style="padding: .4rem;"  (click)="createShift()">Add Shift</button>
             <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Company">
         </div>
     </div>
@@ -18,8 +19,8 @@
         </ng-container>
 
         <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email  </th>
-            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type  </th>
+            <td mat-cell *matCellDef="let row"> {{row.type | titlecase}} </td>
         </ng-container>
 
         <ng-container matColumnDef="shift_start">

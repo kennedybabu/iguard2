@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Shift } from 'src/app/model/shift';
 import { GetCompanyShiftsService } from 'src/app/services/company/get-company-shifts.service';
+import { AddShiftComponent } from '../add-shift/add-shift.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-company-shifts',
@@ -15,7 +17,8 @@ export class CompanyShiftsComponent implements AfterViewInit, OnInit {
   @Input() companyId!: number 
   companyShifts: any [] = []
 
-  constructor(private getCompanyShiftsService: GetCompanyShiftsService){ }
+  constructor(private getCompanyShiftsService: GetCompanyShiftsService,
+    private dialog: MatDialog){ }
 
 
   ngOnInit(): void {
@@ -23,8 +26,6 @@ export class CompanyShiftsComponent implements AfterViewInit, OnInit {
       this.companyShifts = res.message  
 
       this.dataSource.data = res.message
-
-      console.log(this.companyShifts)
     })
   }
 
@@ -47,6 +48,24 @@ export class CompanyShiftsComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  createShift() {
+    const dialogRef = this.dialog.open(AddShiftComponent, {
+      width:'450px', data: {
+        companyId: this.companyId,
+   
+
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getCompanyShiftsService.getShifts(this.companyId).subscribe((res) => {
+        this.companyShifts = res.message  
+  
+        this.dataSource.data = res.message
+      })
+    });
   }
 
 }

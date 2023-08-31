@@ -38,6 +38,10 @@ import { CreateCompanyDeptComponent } from './components/company/create-company-
 import { AddShiftComponent } from './components/company/add-shift/add-shift.component';
 import { CompanyShiftsComponent } from './components/company/company-shifts/company-shifts.component';
 import { CreateStaffComponent } from './components/company/create-staff/create-staff.component';
+import { FormsModule } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
@@ -78,7 +82,8 @@ import { CreateStaffComponent } from './components/company/create-staff/create-s
     MatNativeDateModule,
     MatSortModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [
     DatePipe,

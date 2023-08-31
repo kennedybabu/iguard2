@@ -40,7 +40,7 @@ export class CreateStaffComponent {
     })
 
     this.authService.userData$.subscribe((res) => {
-      console.log(res)
+      this.user = JSON.parse(res)
     })
 
   }
@@ -60,7 +60,14 @@ export class CreateStaffComponent {
 
 
   onSubmit(){
-    // this.createCompanyStaffService.createStaff(this.createStaffForm.value, )
+    this.createCompanyStaffService.createStaff(this.createStaffForm.value, this.user?.accountId, this.currentPremiseId, this.companyId).subscribe((res) => {
+      if(res.statusCode === 702) {
+        this.notificationService.sendSuccessMessage('Staff Added')
+        this.dialogRef.close()
+      } else {
+        this.notificationService.sendErrorMessage('something went wrong try again')
+      }
+    })
   }
 
   get first_name(){

@@ -34,7 +34,8 @@ export class CompanyComponent implements AfterViewInit, OnInit {
     private currentPremiseService: CurrentPremiseService, 
     private getCompanyShiftsService: GetCompanyShiftsService,
     private getCompanyDetailsService: GetCompanyDetailsService,
-    private getCompanyDesignationsService:GetCompanyDesignationsService){
+    private getCompanyDesignationsService:GetCompanyDesignationsService,
+    ){
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.currentPremise = res
         console.log(this.currentPremise)
@@ -73,6 +74,8 @@ export class CompanyComponent implements AfterViewInit, OnInit {
       this.companyDesignations = res.message
     })
 
+
+  
   }
 
   ngAfterViewInit(): void {

@@ -1,7 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CreateCompanyShiftService } from 'src/app/services/company/create-company-shift.service';
+import { GetCompanyDeptsService } from 'src/app/services/company/get-company-depts.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 import { NotificationService } from 'src/app/services/shared/notification.service';
 
@@ -10,7 +11,8 @@ import { NotificationService } from 'src/app/services/shared/notification.servic
   templateUrl: './add-shift.component.html',
   styleUrls: ['./add-shift.component.scss']
 })
-export class AddShiftComponent {
+export class AddShiftComponent implements OnInit {
+
   selectedDays: any [] = [] 
   isChecked: boolean = false
   mondayChecked!: boolean
@@ -26,13 +28,15 @@ export class AddShiftComponent {
   companyDepartments: any [] = []
   companyId!: number  
   currentPremise!:any
+  companyDepts: any [] = []
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data:any,
     private dialogRef: MatDialogRef<AddShiftComponent>,
     private notificationService:NotificationService,
     private createCompanyShiftService: CreateCompanyShiftService,
-    private currentPremiseService:CurrentPremiseService){
+    private currentPremiseService:CurrentPremiseService,
+    private getCompanyDepartmentsService:GetCompanyDeptsService){
 
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.currentPremise = JSON.parse(res) 
@@ -43,6 +47,13 @@ export class AddShiftComponent {
       this.companyId = data.companyId
     }
 
+
+    ngOnInit(): void {
+      this.getCompanyDepartmentsService.getDepartments(this.companyId).subscribe((res) => {
+        this.companyDepartments = res.message
+      })
+  
+    }
 
     createShiftForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -63,7 +74,7 @@ export class AddShiftComponent {
     }
 
 
-    onSubmit(){
+    onStaffShiftSubmit(){
       this.createCompanyShiftService.createStaffShift(this.createShiftForm.value, this.premiseId, this.selectedDays, this.companyId).subscribe((res) => {
         if(res.statusCode === 702) {
           this.notificationService.sendSuccessMessage('shift added') 
@@ -74,4 +85,6 @@ export class AddShiftComponent {
         }
       })
     }
+
+    
 }
