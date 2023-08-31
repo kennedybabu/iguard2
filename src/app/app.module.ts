@@ -40,6 +40,7 @@ import { CompanyShiftsComponent } from './components/company/company-shifts/comp
 import { CreateStaffComponent } from './components/company/create-staff/create-staff.component';
 import { FormsModule } from '@angular/forms';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 
 
@@ -85,7 +86,8 @@ import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
     MatSortModule,
     MatTabsModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    ScheduleModule, 
   ],
   providers: [
     DatePipe,
