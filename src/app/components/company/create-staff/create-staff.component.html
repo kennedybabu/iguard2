@@ -1,0 +1,57 @@
+<div class="container p-3">
+    <h1 class="text-center fw-bold">Create Staff</h1>
+    <form [formGroup]="createStaffForm" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col">
+                <label for="first_name"  class="form-label">First Name</label>
+                <input type="text" formControlName="first_name" id="first_name" class="form-control">
+                <small *ngIf="first_name?.invalid && first_name?.touched" style="color:rgb(248, 82, 82);">First Name required</small>
+            </div>
+            <div class="col">
+                <label for="middleName"  class="form-label">Middle Name</label>
+                <input type="text" formControlName="middle_name" id="middleName" class="form-control">
+            </div>
+            <div class="col">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text"  formControlName="last_name" id="last_name" class="form-control">
+                <small *ngIf="last_name?.invalid && last_name?.touched" style="color:rgb(248, 82, 82);">last name required</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" formControlName="emailAddress" class="form-control">
+            <small *ngIf="emailAddress?.invalid && emailAddress?.touched" style="color:rgb(248, 82, 82);">Email required</small>
+        </div>
+
+        <div class="form-group">
+            <label for="msisdn">Phone no</label>
+            <input type="text" formControlName="msisdn" class="form-control">
+            <small *ngIf="msisdn?.invalid && msisdn?.touched" style="color:rgb(248, 82, 82);">Mobile no. required</small>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" formControlName="username" class="form-control">
+            <small *ngIf="username?.invalid && username?.touched" style="color:rgb(248, 82, 82);">Username required</small>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Department</label>
+            <select  class="form-select" formControlName="department">
+              <option value="" disabled>Choose...</option>
+              <option *ngFor="let dept of companyDepts" [ngValue]="dept">{{dept.department_name}}</option>             
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Designation</label>
+            <select  class="form-select" formControlName="designation">
+              <option value="" disabled>Choose...</option>
+              <option *ngFor="let designation of companyDesignations" [ngValue]="designation">{{designation.description}}</option>             
+            </select>
+        </div>
+        <button class="my-3">add staff</button>
+    </form>
+</div>
+
+

@@ -1,0 +1,16 @@
+<div class="p-3">
+    <form [formGroup]="createBeacon" (submit)="onSubmit()" style="max-width: 500px;" class="mx-auto">
+        <h4 style="font-weight: bold;font-size: large;">create beacon</h4>
+        <div class="form-group my-1">
+            <label for="signature">Signature</label>
+            <input formControlName="signature" class="form-control" type="text" name="signature" id="signature" placeholder="signature">
+            <small *ngIf="signature?.invalid && signature?.touched" style="color: rgb(240, 79, 79);">*Required</small>
+        </div>
+        <div class="form-group my-1">
+            <label for="description">Location</label>
+            <input formControlName="description" class="form-control" type="text" name="description" id="description" placeholder="description">
+            <small *ngIf="description?.invalid && description?.touched" style="color: rgb(240, 79, 79);">*Required</small>
+        </div>                 
+        <button [disabled]="createBeacon.invalid"  type="submit" class="btn btn-outline-success btn-sm my-2" style="width: max-content;">Submit</button>
+    </form>
+</div>

@@ -31,7 +31,13 @@ import { CompanyStaffComponent } from './components/company/company-staff/compan
 import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
 import { DateRangeComponent } from './components/shared/date-range/date-range.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { PremiseBeaconsComponent } from './components/premise/premise-beacons/premise-beacons.component';
+import { AddPremiseBeaconsComponent } from './components/premise/add-premise-beacons/add-premise-beacons.component';
+import { CreateCompanyComponent } from './components/company/create-company/create-company.component';
+import { CreateCompanyDeptComponent } from './components/company/create-company-dept/create-company-dept.component';
+import { AddShiftComponent } from './components/company/add-shift/add-shift.component';
+import { CompanyShiftsComponent } from './components/company/company-shifts/company-shifts.component';
+import { CreateStaffComponent } from './components/company/create-staff/create-staff.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +51,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     CompanyComponent,
     CompanyStaffComponent,
     StaffProfileComponent,
-    DateRangeComponent
+    DateRangeComponent,
+    PremiseBeaconsComponent,
+    AddPremiseBeaconsComponent,
+    CreateCompanyComponent,
+    CreateCompanyDeptComponent,
+    AddShiftComponent,
+    CompanyShiftsComponent,
+    CreateStaffComponent
   ],
   imports: [
     BrowserModule,

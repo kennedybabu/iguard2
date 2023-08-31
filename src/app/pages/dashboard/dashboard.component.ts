@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Appointment } from 'src/app/model/appointment';
-import { Premise } from 'src/app/model/premise';
 import { GetPremiseAppointmentsService } from 'src/app/services/appointments/get-premise-appointments.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GetPremiseLeaveRequestsService } from 'src/app/services/leave-req/get-premise-leave-requests.service';

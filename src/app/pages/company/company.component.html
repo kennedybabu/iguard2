@@ -4,9 +4,9 @@
     </div>
 
     <div class="row" style="min-height: 96vh;">
-        <div class="col-md-2 border-right-light p-4">
-            <h2 class="dark-text mb-0">company name</h2>
-            <small class="mb-0 light-text">Lorem ipsum dolor sit.</small>
+        <div class="col-md-2 border-right-light p-4 text-center">
+            <h2 class="dark-text mb-0">{{companyObject?.name}}</h2>
+            <small class="mb-0 light-text">{{companyObject?.description}}</small>
         </div>
 
         <div class="col-md-10 px-0">        
@@ -23,7 +23,8 @@
                     <mat-tab label="Departments">
                         <div class="row p-2">
                             <div class="d-flex flex-row-reverse">
-                                <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Company">
+                                <button class="mx-1 primary-btn" style="padding: .4rem;"  (click)="createDepartment()">Add Department</button>
+                                <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Department">
                             </div>
                         </div>
                         <table mat-table [dataSource]="dataSource" matSort>  
@@ -50,10 +51,12 @@
                         <mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of users"></mat-paginator>
                     </mat-tab>
                     <mat-tab label="Staff">
-                        <app-company-staff [companyId]="companyId"></app-company-staff>
+                        <app-company-staff [companyDesignations]="companyDesignations" [companyId]="companyId"></app-company-staff>
                     </mat-tab>
-                    <mat-tab label="Third"> Content 3 </mat-tab>
-                </mat-tab-group>   
+                    <mat-tab label="Shifts"> 
+                        <app-company-shifts [companyId]="companyId"></app-company-shifts>
+                    </mat-tab>
+                </mat-tab-group>  
 
             </div>             
         </div>

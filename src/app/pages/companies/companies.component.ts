@@ -7,6 +7,9 @@ import { Premise } from 'src/app/model/premise';
 import { GetPremiseCompaniesService } from 'src/app/services/company/get-premise-companies.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 import {MatSort} from '@angular/material/sort';
+import { GetPremiseDetailsService } from 'src/app/services/premise/get-premise-details.service';
+import { CreateCompanyComponent } from 'src/app/components/company/create-company/create-company.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -20,12 +23,15 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
   premiseId!: number
   premiseCompanies: Company [] = []
   currentPremise!: Premise
+  premiseObject!: any
 
   constructor(
     private route:ActivatedRoute,
     private getPremiseCompaniesService:GetPremiseCompaniesService,
     private currentPremiseService:CurrentPremiseService,
-    private router:Router
+    private router:Router,
+    private getPremiseDetailsService: GetPremiseDetailsService,
+    private dialog:MatDialog
   ){
     this.currentPremise = this.currentPremiseService.premiseData
     console.log(this.currentPremise.name)
@@ -43,9 +49,14 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
       (params:Params) => {
         this.premiseId = +params['id']
       }
-    )
+    )    
+    
+    this.getPremiseDetailsService.getPremiseInfo(this.premiseId).subscribe((res) => {
+      console.log(res.message)
+      this.premiseObject = res.message
+    })
 
-
+    
     this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
       if(res.statusCode === 702){
         this.premiseCompanies = res.message
@@ -75,6 +86,23 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
 
   viewCompanyDetails(id: number){
     this.router.navigate(['company', id])
+  }
+
+
+  createCompany() {
+    const dialogRef = this.dialog.open(CreateCompanyComponent, {
+      width:'450px', height: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
+        if(res.statusCode === 702){
+          this.premiseCompanies = res.message
+  
+          this.dataSource.data = res.message
+        }
+      })
+    });
   }
 
 }
