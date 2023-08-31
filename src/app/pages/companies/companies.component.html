@@ -21,8 +21,8 @@
                 <mat-tab label="Companies">                                
                     <div>      
                         <div class="row">
-                            <div class="d-flex justify-content-between p-4 align-items-center">                
-                                <div class="d-flex flex-row-reverse align-items-end">
+                            <div class="p-4 align-items-center">                
+                                <div class="d-flex  flex-row-reverse align-items-end">
                                     <button class="mx-1" style="padding: .4rem;" (click)="createCompany()">Add Company</button>
                                     <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Company">
                                 </div>
@@ -57,8 +57,7 @@
                     <app-premise-beacons [premiseId]="premiseId"></app-premise-beacons>
                 </mat-tab>
                 <mat-tab label="Third"> Content 3 </mat-tab>
-            </mat-tab-group>
-              
+            </mat-tab-group>            
           
         </div>
     </div>    

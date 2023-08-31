@@ -39,6 +39,7 @@ import { AddShiftComponent } from './components/company/add-shift/add-shift.comp
 import { CompanyShiftsComponent } from './components/company/company-shifts/company-shifts.component';
 import { CreateStaffComponent } from './components/company/create-staff/create-staff.component';
 import { FormsModule } from '@angular/forms';
+import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 
 
 
@@ -62,7 +63,8 @@ import { FormsModule } from '@angular/forms';
     CreateCompanyDeptComponent,
     AddShiftComponent,
     CompanyShiftsComponent,
-    CreateStaffComponent
+    CreateStaffComponent,
+    StaffLoginComponent
   ],
   imports: [
     BrowserModule,

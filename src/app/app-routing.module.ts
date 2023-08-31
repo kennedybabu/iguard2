@@ -8,6 +8,7 @@ import { DepartmentsComponent } from './pages/departments/departments.component'
 import { CompanyComponent } from './pages/company/company.component';
 import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
 import { RoleBaseGuard  as RoleGuard } from './_guard/role-base.guard';
+import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 
 const routes: Routes = [
   {path:'', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
     path: 'departments', component: DepartmentsComponent
   },
   { path: 'company/:id', component: CompanyComponent},
+  {path:'staff-login', component: StaffLoginComponent},
   {path:'staff-profile/:id', component: StaffProfileComponent} 
 ];
 

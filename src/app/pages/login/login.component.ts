@@ -26,7 +26,7 @@ export class LoginComponent {
   error!: string
 
   private userDataSubject: BehaviorSubject<any> = new BehaviorSubject(null)
-  userDate$: Observable<any> = this.userDataSubject.asObservable()
+userDate$: Observable<any> = this.userDataSubject.asObservable()
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),

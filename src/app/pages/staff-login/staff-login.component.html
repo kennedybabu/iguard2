@@ -1,0 +1,25 @@
+<div class="row" style="height: 96vh;">
+    <div class="col-md-6 col-lg-5 pt-5 mx-auto" style="color: black;">
+        <form class="mx-auto px-4 py-3" [formGroup]="staffForm" (submit)="onSubmit()">
+            <h2 class="text-center">Staff Login</h2>
+            <p class="text-center light-text/">Please enter your details</p>
+            <div class="form-group mt-4">
+                <label for="msisdn">Phone no</label>
+                <input  type="text" formControlName="msisdn" class="form-control" name="msisdn" id="msisdn" placeholder="254...">
+            </div>
+            <div *ngIf="hasPassword" class="form-group my-2">
+                <label for="code" class="form-label">Password</label>
+                <input type="code" formControlName="code" class="form-control" id="code" placeholder="Enter code">
+            </div>
+            
+            <button class="btn btn-primary mt-3" style="width: 100%;"><span *ngIf="hasPassword">Validate OTP</span> <span *ngIf="!hasPassword">get otp</span></button> 
+        </form>
+        <div class="row px-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <small routerLink="/login" style="font-size: small;color: #3f3f3f;cursor: pointer;">admin?</small>
+                </div>
+            </div>
+        </div>
+    </div>      
+</div>
