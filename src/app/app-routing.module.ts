@@ -9,11 +9,14 @@ import { CompanyComponent } from './pages/company/company.component';
 import { StaffProfileComponent } from './pages/staff-profile/staff-profile.component';
 import { RoleBaseGuard  as RoleGuard } from './_guard/role-base.guard';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
+import { AuthGuard } from './auth.guard';
+
+
 
 const routes: Routes = [
   {path:'', redirectTo: '/dashboard', pathMatch: 'full'},
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard]
+    path: 'dashboard', component: DashboardComponent, canActivate: [RoleGuard, AuthGuard]
   },
   {path: 'login', component: LoginComponent},
   {
@@ -21,16 +24,16 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'companies/:id', component: CompaniesComponent },
+    path: 'companies/:id', component: CompaniesComponent, canActivate: [AuthGuard, RoleGuard] },
   {
-    path: 'staff', component: StaffComponent
+    path: 'staff', component: StaffComponent,  canActivate: [AuthGuard, RoleGuard]
   },
   {
-    path: 'departments', component: DepartmentsComponent
+    path: 'departments', component: DepartmentsComponent,  canActivate: [AuthGuard, RoleGuard]
   },
-  { path: 'company/:id', component: CompanyComponent},
+  { path: 'company/:id', component: CompanyComponent,  canActivate: [AuthGuard, RoleGuard]},
   {path:'staff-login', component: StaffLoginComponent},
-  {path:'staff-profile/:id', component: StaffProfileComponent} 
+  {path:'staff-profile/:id', component: StaffProfileComponent,  canActivate: [AuthGuard]} 
 ];
 
 @NgModule({
