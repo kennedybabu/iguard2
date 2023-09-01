@@ -41,8 +41,8 @@ import { CreateStaffComponent } from './components/company/create-staff/create-s
 import { FormsModule } from '@angular/forms';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
-import { CreateLeaveRequestComponent } from './components/staff/create-leave-request/create-leave-request.component';
 import { CreateAppointmentComponent } from './components/staff/create-appointment/create-appointment.component';
+import { CreateLeaveReqComponent } from './components/staff/create-leave-req/create-leave-req.component';
 
 
 
@@ -68,8 +68,8 @@ import { CreateAppointmentComponent } from './components/staff/create-appointmen
     CompanyShiftsComponent,
     CreateStaffComponent,
     StaffLoginComponent,
-    CreateLeaveRequestComponent,
-    CreateAppointmentComponent
+    CreateAppointmentComponent,
+    CreateLeaveReqComponent
   ],
   imports: [
     BrowserModule,

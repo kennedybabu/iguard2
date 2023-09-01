@@ -13,8 +13,8 @@ import { GetStaffAppointmentsService } from 'src/app/services/staff/get-staff-ap
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, EventSettingsModel } from '@syncfusion/ej2-angular-schedule';
 import { Appointment } from 'src/app/model/appointment';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { CreateLeaveRequestComponent } from 'src/app/components/staff/create-leave-request/create-leave-request.component';
 import { CreateAppointmentComponent } from 'src/app/components/staff/create-appointment/create-appointment.component';
+import { CreateLeaveReqComponent } from 'src/app/components/staff/create-leave-req/create-leave-req.component';
 
 
 
@@ -196,7 +196,7 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
 
 
   openLeaveDialog() {
-    const dialogRef = this.dialog.open(CreateLeaveRequestComponent, {
+    const dialogRef = this.dialog.open(CreateLeaveReqComponent, {
       width: '600px', data: {
         staffId: this.staffId,
       }
