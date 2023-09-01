@@ -27,7 +27,6 @@ export class RoleBaseGuard implements CanActivate {
     }
 
 
-    console.log(this.user, 'ind the trenches')
     const userPermission = this.user.permissions 
     const validRoles = route.data['authorities'] || [] 
 

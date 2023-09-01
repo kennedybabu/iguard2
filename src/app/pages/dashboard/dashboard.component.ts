@@ -68,15 +68,15 @@ export class DashboardComponent implements OnInit {
     
     ngOnInit(): void {
 
+    this.totalStaff = 0 
+
+    //get total staff in the premise
+    for(let company of this.premiseCompanies) {
+      this.totalStaff += company.staff_count
+    }
+
     this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
-      this.premiseCompanies = res?.message 
-
-      this.totalStaff = 0 
-
-      //get total staff in the premise
-      for(let company of this.premiseCompanies) {
-        this.totalStaff += company.staff_count
-      }
+      this.premiseCompanies = res?.message    
 
     })
 
@@ -86,16 +86,18 @@ export class DashboardComponent implements OnInit {
     this.getAllPremisesService.getPremises(this.activeUser?.accountId).subscribe((res: any) => {
       if(res.statusCode === 702) {
         this.premises = res.message 
+
         let item = localStorage.getItem('currentPremise') 
 
         if(item) {
+
           this.currentPremise = JSON.parse(item)
           this.currentPremiseService.currentPremiseSubject.next(JSON.stringify(this.currentPremise))
           this.showingPremiseId = this.currentPremise?.premise_id
         } else {
           this.currentPremise = this.premises[0] 
           this.showingPremiseId = this.currentPremise?.premise_id
-          this.currentPremiseService.currentPremiseSubject.next(this.currentPremise)
+          this.currentPremiseService.currentPremiseSubject.next(JSON.stringify(this.currentPremise))
           localStorage.setItem('currentPremise', JSON.stringify(this.currentPremise))
         }        
       }

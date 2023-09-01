@@ -4,12 +4,12 @@
     </div>
 
     <div class="row" style="min-height: 96vh;">
-        <div class="col-md-2 text-center border-right-light p-4">
+        <div class="col-md-3 text-center border-right-light p-4">
             <h2 class="dark-text mb-0">{{premiseObject?.name | titlecase }}</h2>
             <small class="mb-0 light-text">{{premiseObject?.narration}}</small>
         </div>
 
-        <div class="col-md-10 px-0">   
+        <div class="col-md-9 px-0">   
             <div class="row">
                 <div class="p-3">
                     <h3 style="font-weight: bold;" class="mb-0">Premise Companies</h3>
@@ -56,7 +56,7 @@
                 <mat-tab label="Beacons">
                     <app-premise-beacons [premiseId]="premiseId"></app-premise-beacons>
                 </mat-tab>
-                <mat-tab label="Third"> Content 3 </mat-tab>
+                <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
             </mat-tab-group>            
           
         </div>

@@ -1,6 +1,6 @@
 <div style="position: relative;" id="wrapper">
   <mat-drawer-container>
-      <mat-drawer mode="over" [opened]="openedSidebar" style="width:350px;">
+      <mat-drawer mode="side"  fixedInViewport fixedTopGap  fixedBottomGap opened style="width:300px;">
           <mat-nav-list>
               <a routerLinkActive="active" routerLink="dashboard" [routerLinkActiveOptions]="{ exact: true }"><i class="bi bi-house-fill mx-3"></i>Dashboard</a>
               <a routerLinkActive="active" routerLink="accounts"><i class="bi bi-people-fill mx-3"></i>Accounts</a>

@@ -3,6 +3,8 @@ button {
     background-color: transparent;
     cursor: pointer;
     transition: all ease .2s;
+    border-radius: 0;
+    margin: 0 .2rem;
 
     &:hover {
         background-color: yellow;
