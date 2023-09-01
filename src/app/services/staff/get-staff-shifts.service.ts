@@ -38,7 +38,6 @@ export class GetStaffShiftsService {
         },
         "requestService":"GET_STAFF_SHIFT_DETAILS"
     }
-    console.log(jsonObject)
     return this.http.post('https://iguardbe.helapay.africa/api/GateGuard', jsonObject)
   }
 

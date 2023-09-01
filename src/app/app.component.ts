@@ -33,13 +33,13 @@ export class AppComponent {
     this.navigationHistoryService.startSaveHistory()
 
     this.authService.userData$.subscribe((res) => {
-      this.user = res
+      this.user = JSON.parse(res)
     })
 
 
 
     this.currentPremiseService.premiseData$.subscribe((res) => {
-      this.currentPremise = res
+      this.currentPremise = JSON.parse(res)
       this.currentPremiseId = this.currentPremise?.premise_id    
 
     })
@@ -75,7 +75,6 @@ export class AppComponent {
 
 
   logout(){
-    console.log('called')
     this.router.navigate(['login'])
     localStorage.removeItem('ulpSaH5wx1pO!E')
     localStorage.removeItem('currentPremise')

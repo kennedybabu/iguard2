@@ -11,7 +11,7 @@
                         <i  class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem;color: #7ecff5;"></i>
                     </div>
                     <div class="h-100 d-flex justify-content-center align-items-center flex-column">
-                        <h3 class="dark-text mb-1" style="font-size: 30px;">23</h3>
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">{{premiseCompanies.length}}</h3>
                         <p class="light-text">Companies</p>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <i class="bi bi-people-fill" style="font-size: 1.5rem;color: #fc5c84;"></i>
                     </div>
                     <div class="h-100 d-flex justify-content-center align-items-center flex-column">
-                        <h3 class="dark-text mb-1" style="font-size: 30px;">50</h3>
+                        <h3 class="dark-text mb-1" style="font-size: 30px;">{{totalStaff}}</h3>
                         <p class="light-text">Staff</p>
                     </div>
                 </div>
@@ -86,10 +86,10 @@
     </div>
 
     <div class="row my-2 justify-content-between px-3">
-        <div class="col-md-5 light-border">
+        <div class="col-md-5 light-border py-2">
             <h3>Appointments</h3>
             <div>
-                <p *ngIf="premiseAppointments.length === 0" class="mb-0">No appointments</p>
+                <p *ngIf="premiseAppointments.length === 0" class="mb-0 light-text">No appointments</p>
                 <div  *ngFor="let appointment of premiseAppointments" class="appointment shadow-sm my-3 p-3">
                     <div>
                         <p class="mb-0 dark-text">John Doe</p>
@@ -99,11 +99,12 @@
             </div>
         </div>
 
-        <div class="col-md-5 light-border">
+        <div class="col-md-5 light-border py-2">
             <h3>Leave Requests</h3>
             <div>
-                <div class="leave-request shadow my-3">
-
+                <p class="mb-0 light-text" *ngIf="premiseLeaveRequest.length < 1">No leave requests</p>
+                <div *ngFor="let req of premiseLeaveRequest" class="leave-request shadow my-3">
+                    
                 </div>
             </div>
         </div>

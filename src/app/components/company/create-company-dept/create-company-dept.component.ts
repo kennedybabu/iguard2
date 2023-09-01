@@ -23,9 +23,9 @@ export class CreateCompanyDeptComponent {
     private currentPremiseService: CurrentPremiseService
     ) {
 
-      this.currentPremiseService.premiseData$.subscribe((res) => {
-        console.log(res)
-      })
+      // this.currentPremiseService.premiseData$.subscribe((res) => {
+      //   console.log(res)
+      // })
 
     }
 

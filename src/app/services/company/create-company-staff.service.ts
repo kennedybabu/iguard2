@@ -29,7 +29,6 @@ export class CreateCompanyStaffService {
       "requestService": "CREATE_STAFF_RULE"  
     }
 
-    console.log(jsonObject)
     return this.http.post('https://iguardbe.helapay.africa/api/GateGuard', jsonObject)
   }
 }

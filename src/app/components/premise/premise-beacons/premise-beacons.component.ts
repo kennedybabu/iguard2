@@ -28,7 +28,6 @@ export class PremiseBeaconsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getPremiseBeaconsService.getPremiseBeacons(this.premiseId).subscribe((res) => {
-      console.log(res)
       this.dataSource.data = res.message.Beacons.Beacons
     })
   }
@@ -59,7 +58,6 @@ export class PremiseBeaconsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getPremiseBeaconsService.getPremiseBeacons(this.premiseId).subscribe((res) => {
-        console.log(res)
         this.dataSource.data = res.message.Beacons.Beacons
       })
     });

@@ -13,6 +13,8 @@ import { GetStaffAppointmentsService } from 'src/app/services/staff/get-staff-ap
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, EventSettingsModel } from '@syncfusion/ej2-angular-schedule';
 import { Appointment } from 'src/app/model/appointment';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CreateLeaveRequestComponent } from 'src/app/components/staff/create-leave-request/create-leave-request.component';
+import { CreateAppointmentComponent } from 'src/app/components/staff/create-appointment/create-appointment.component';
 
 
 
@@ -38,9 +40,7 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
   staffShifts: any [] = []
   staffAppointments: Appointment [] = []
   approvedAppointments:any [] = []
-  userRole!: any
-
-  
+  userRole!: any  
 
 
   public eventSettings: EventSettingsModel = { }
@@ -167,7 +167,6 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DateRangeComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -187,14 +186,37 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
     const startDate = this.range.controls['start'].value 
     const endDate = this.range.controls['end'].value
     
-    console.log(startDate, endDate)
 
     this.getStaffShiftsService.getTimedDetails(this.staffId, startDate, endDate).subscribe((res) => {
-      console.log(res)
       this.staffShifts = res.data
       this.dataSource.data = res.data
     })
 
+  }
+
+
+  openLeaveDialog() {
+    const dialogRef = this.dialog.open(CreateLeaveRequestComponent, {
+      width: '600px', data: {
+        staffId: this.staffId,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+
+  openAppointmentDialog() {
+    const dialogRef = this.dialog.open(CreateAppointmentComponent, {
+      width: '600px', data: {
+        departmentId: this.staff.department,
+        staffId: this.staffId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 }

@@ -33,8 +33,7 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
     private getPremiseDetailsService: GetPremiseDetailsService,
     private dialog:MatDialog
   ){
-    this.currentPremise = this.currentPremiseService.premiseData
-    console.log(this.currentPremise.name)
+  
   }
 
   displayedColumns: string[] = ['name', 'staff_count'];
@@ -52,7 +51,6 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
     )    
     
     this.getPremiseDetailsService.getPremiseInfo(this.premiseId).subscribe((res) => {
-      console.log(res.message)
       this.premiseObject = res.message
     })
 

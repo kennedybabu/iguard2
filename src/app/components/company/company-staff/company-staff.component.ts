@@ -27,7 +27,7 @@ export class CompanyStaffComponent implements OnInit, AfterViewInit {
     private getCompanyDeptsService: GetCompanyDeptsService
     ){}
 
-  displayedColumns: string[] = ['firstName', 'msisdn', 'email', 'designation'];
+  displayedColumns: string[] = ['firstName', 'msisdn', 'email', 'designation', 'fingerprint'];
   dataSource = new MatTableDataSource<Staff>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

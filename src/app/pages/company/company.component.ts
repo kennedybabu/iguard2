@@ -38,7 +38,6 @@ export class CompanyComponent implements AfterViewInit, OnInit {
     ){
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.currentPremise = res
-        console.log(this.currentPremise)
       })
     }
 
@@ -66,7 +65,6 @@ export class CompanyComponent implements AfterViewInit, OnInit {
     this.getCompanyDetailsService.getDetails(this.companyId).subscribe((res) => {
       this.companyObject = res.message 
       
-      console.log(this.companyObject)
     })
 
 

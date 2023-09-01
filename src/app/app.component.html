@@ -6,14 +6,14 @@
               <a routerLinkActive="active" routerLink="accounts"><i class="bi bi-people-fill mx-3"></i>Accounts</a>
               <a routerLinkActive="active" (click)="viewPremiseCompanies()"><i class="bi bi-grid-3x3-gap-fill mx-3"></i>Companies</a>    
               <a routerLinkActive="active" ><i class="bi bi-buildings-fill mx-3"></i>Premises</a>    
-              <a routerLinkActive="active" (click)="logout()"><i class="bi bi-people-fill mx-3"></i>Logout</a>    
+              <a routerLinkActive="active" (click)="logout()"><i class="bi bi-box-arrow-left mx-3"></i>Logout</a>    
               <div *ngIf="user">
                     <div class="d-flex align-items-center" style="cursor: pointer;"  id="user-profile">
                         <div class="user-img">
 
                         </div>
                         <div class="px-1">
-                            <h3 class="mb-0 dark-text">{{user.user}}</h3>
+                            <h3 class="mb-0 dark-text">{{user?.user}}</h3>
                             <small class="light-text">, koki company</small>
                         </div>
                     </div>

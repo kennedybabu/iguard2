@@ -35,14 +35,12 @@ userDate$: Observable<any> = this.userDataSubject.asObservable()
 
 
   onSubmit(){
-    console.log('called')
     this.authService.login(this.loginForm.value).subscribe((res:any) => {
       if(res.statusCode === 702) {
         this.notificationService.sendSuccessMessage('logged in successfully')
         this.router.navigate(['/'])
       }
     },(error) => {
-      console.log(error)
       this.notificationService.sendErrorMessage('something went wrong try again')
     })
   }

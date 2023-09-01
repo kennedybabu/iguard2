@@ -23,7 +23,6 @@ export class DateRangeComponent {
 
     this.rangeRangeSelected.emit({start: startDate, end: endDate})
     
-    console.log(startDate, endDate)
 
   }
 

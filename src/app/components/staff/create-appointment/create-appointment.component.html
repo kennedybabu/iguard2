@@ -1,0 +1,34 @@
+<div class="p-5">
+    <h2 class="mb-0">Guest Appointment</h2>
+
+    <form [formGroup]="createAppointmentForm" (submit)="createAppointment()">
+          
+        <div class="form-group">
+            <label for="visitor_name">Name</label>
+            <input formControlName="visitor_name" type="text" id="visitor_name" class="form-control">
+        </div>
+        <div class="row">
+            <div class="form-group  col">
+                <label for="appointment_start">Start Time</label>
+                <input formControlName="appointment_start" type="datetime-local" name="appointment_start" id="appointment_start" class="form-control">
+            </div>
+            <div class="form-group  col">
+                <label for="appointment_end">End Time</label>
+                <input formControlName="appointment_end" type="datetime-local" name="appointment_end" id="appointment_end" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label> 
+            <input formControlName="email" type="email" name="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="msisdn">Phone No.</label> 
+            <input formControlName="msisdn" type="text" name="msisdn" id="msisdn" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="narration">Description</label> 
+            <textarea formControlName="narration" name="narration" id="narration" style="border-radius: 0;" class="form-control"></textarea>
+        </div>
+        <button style="border-radius: 0;" class="my-2 btn btn-primary">Add Appointment</button>
+    </form>
+</div>

@@ -25,6 +25,11 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation  </th>
             <td mat-cell *matCellDef="let row"> {{row.designation[0].name}} </td>
         </ng-container>
+
+        <ng-container matColumnDef="fingerprint">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fingerprint  </th>
+            <td mat-cell *matCellDef="let element"><span style="font-size: 1.5rem;"><i [ngClass]="element.fingerprint.fingerprint ? 'registered' : ''" class="bi bi-fingerprint light-text" ></i></span></td>
+        </ng-container>
     
         <tr mat-header-row class="border-bottom-light border-top-light light-text" *matHeaderRowDef="displayedColumns"></tr>
         <tr (click)="viewStaffProfile(row.user_id)" mat-row style="height: 35px;cursor: pointer;" class="table-rows" *matRowDef="let row; columns: displayedColumns;"></tr>
