@@ -43,6 +43,11 @@ import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { CreateAppointmentComponent } from './components/staff/create-appointment/create-appointment.component';
 import { CreateLeaveReqComponent } from './components/staff/create-leave-req/create-leave-req.component';
+import { CreateCompanySettingsComponent } from './components/company/create-company-settings/create-company-settings.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { PremiseLeaveReqsComponent } from './components/premise/premise-leave-reqs/premise-leave-reqs.component';
+import { AccountsComponent } from './pages/accounts/accounts.component';
+import { CreateAccountComponent } from './components/accounts/create-account/create-account.component';
 
 
 
@@ -69,7 +74,12 @@ import { CreateLeaveReqComponent } from './components/staff/create-leave-req/cre
     CreateStaffComponent,
     StaffLoginComponent,
     CreateAppointmentComponent,
-    CreateLeaveReqComponent
+    CreateLeaveReqComponent,
+    CreateCompanySettingsComponent,
+    NotificationsComponent,
+    PremiseLeaveReqsComponent,
+    AccountsComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,8 @@ import { StaffProfileComponent } from './pages/staff-profile/staff-profile.compo
 import { RoleBaseGuard  as RoleGuard } from './_guard/role-base.guard';
 import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 import { AuthGuard } from './auth.guard';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { AccountsComponent } from './pages/accounts/accounts.component';
 
 
 
@@ -33,7 +35,9 @@ const routes: Routes = [
   },
   { path: 'company/:id', component: CompanyComponent,  canActivate: [AuthGuard, RoleGuard]},
   {path:'staff-login', component: StaffLoginComponent},
-  {path:'staff-profile/:id', component: StaffProfileComponent,  canActivate: [AuthGuard]} 
+  {path:'staff-profile/:id', component: StaffProfileComponent,  canActivate: [AuthGuard]},
+  {path:'notifications/:id',component: NotificationsComponent},
+  {path: 'accounts',component: AccountsComponent} 
 ];
 
 @NgModule({

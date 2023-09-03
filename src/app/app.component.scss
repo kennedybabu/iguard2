@@ -1,6 +1,16 @@
 #wrapper {
     min-height: 100vh;
 
+
+    .active {
+        background-color: rgba(109, 209, 248, 0.288); 
+
+
+        span {
+            background-color: rgb(252, 252, 128);
+        }
+    }
+
     mat-drawer-container {
         position: relative;
 
@@ -44,8 +54,8 @@
 
 
             #window {
-                height: calc(100vh);
-                overflow-y: scroll;
+                height: calc(100vh - 96px); 
+                // overflow-y: scroll;
             }
         }
 
@@ -63,6 +73,19 @@
                     padding: 1rem;
                     cursor: pointer;
                     text-decoration: none;
+                    color: #3a3a3a;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: .4rem;
+                    }
                 }
             }
 

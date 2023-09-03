@@ -79,6 +79,7 @@ export class CompanyStaffComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getCompanyStaffService.getStaff(this.companyId).subscribe((res) => { 
         this.dataSource.data = res.message
+        console.log(res)
       })
     });
   }

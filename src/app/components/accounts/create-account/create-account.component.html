@@ -1,0 +1,175 @@
+<div class="container">
+    <div class="row">
+         <mat-vertical-stepper linear class="rounded shadow-sm p-3">
+             <mat-step [stepControl]="createAccountForm">
+                 <ng-template matStepLabel>Create Account</ng-template>
+                 <form [formGroup]="createAccountForm" style="max-width: 600px;" class="mx-auto">
+                        <div class="form-group">              
+                             <label for="accountName">Account Name</label>
+                             <input type="text" formControlName="accountName" id="accountName" class="form-control">
+                             <small *ngIf="accountName?.invalid && accountName?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
+                        </div>
+                        <div class="form-group">              
+                             <label for="location">Location</label>
+                             <input type="text" formControlName="location" id="location" class="form-control">
+                             <small *ngIf="location?.invalid && location?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
+                         </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email address</label>
+                            <input type="email" formControlName="emailAddress" class="form-control" id="emailAddress">
+                            <small *ngIf="emailAddress?.invalid && emailAddress?.touched" id="emailHelp" style="color:red" class="form-text">Please enter a valid email.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone No.</label>
+                            <input type="text" formControlName="msisdn" placeholder="254..." class="form-control" id="msisdn" aria-describedby="emailHelp">
+                            <small *ngIf="msisdn?.invalid && msisdn?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
+                            </div>
+                        <div class="form-group">
+                            <label for="message">Description</label>
+                            <input type="text" formControlName="description" class="form-control" id="description" >
+                            <small *ngIf="description?.invalid && description?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
+                        </div>  
+                        <div class="form-group">              
+                             <label for="first_name">username</label>
+                             <input type="text" formControlName="username" id="username" class="form-control">
+                         <small *ngIf="username?.invalid && username?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
+                         </div>
+                         <div class="form-group">              
+                             <label for="password">Password</label>
+                             <input type="password" formControlName="password" id="password" class="form-control">
+                             <small *ngIf="password?.invalid && password?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
+                        </div>
+                        <button (click)="createAccount()" [disabled]="createAccountForm.invalid" type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Submit</button>
+                    </form>
+                 <ng-template matStepLabel>Add Account</ng-template>
+                 <div>
+                     <button class="btn btn-primary" [disabled]="!firstStep" mat-button matStepperNext>Next</button>
+                 </div>
+             </mat-step>
+             <mat-step [stepControl]="createPremiseForm">
+                 <ng-template matStepLabel>Create Premise</ng-template>
+                 <form [formGroup]="createPremiseForm" (submit)="createPremiseFormSubmit()" style="max-width: 500px;" class="mx-auto">
+                    <h4 style="font-weight: bold;font-size: large;">create a premise</h4>
+                    <div class="form-group my-1">
+                        <label for="name">Name</label>
+                        <input formControlName="name" class="form-control" type="text"  placeholder="Name">
+                        <small *ngIf="name?.invalid && name?.touched" style="color: rgb(240, 79, 79);">*Required</small>
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="location">Location</label>
+                        <input formControlName="location" class="form-control" type="text" name="location" placeholder="location">
+                        <small *ngIf="location?.invalid && location?.touched" style="color: rgb(240, 79, 79);">*Required</small>
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="location">Narration</label>
+                        <input formControlName="narration" class="form-control" type="text" name="narration" id="narration" placeholder="Narration">
+                        <small *ngIf="narration?.invalid && narration?.touched" style="color: rgb(240, 79, 79);">*Required</small>
+                    </div>
+                    <div class="form-group">
+                         <label for="category">Premise Category</label>
+                         <select formControlName="category" class="form-select" >
+                             <option selected>Open this select menu</option>
+                             <option *ngFor="let category of premiseCategories" [value]="category.id">{{category.category}}</option>              
+                         </select>
+                         <small *ngIf="category?.invalid && category?.touched" style="color: rgb(240, 79, 79);">*Required</small>
+                    </div>                
+                    <button type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Add Premise</button>
+                </form>
+                 <ng-template matStepLabel>Add Premise</ng-template>
+                 <div>
+                     <button class="btn btn-secondary mx-1" mat-button matStepperPrevious>Prev</button>
+                     <button class="btn btn-success" mat-button matStepperNext>Next</button>
+                 </div>
+             </mat-step>
+
+             <mat-step [stepControl]="addAccountSettingsForm">
+                <ng-template matStepLabel>Add Account Settings</ng-template>
+                <form [formGroup]="addAccountSettingsForm" (submit)="createPremiseSettingsFormSubmit()" class="mx-auto">
+                    <select formControlName="appointment_type" class="form-select" aria-label="Default select example">
+                        <option selected>Appointment Type</option>
+                        <option value="EXPRESS">Express</option>
+                        <option value="HR">Through HR</option>
+                      </select>
+
+                      <select formControlName="residential_type" class="form-select" aria-label="Default select example">
+                        <option selected>Residential Type</option>
+                        <option value="OWNER_MODE">Owner</option>
+                        <option value="RENTALS_MODE">Rentals</option>
+                        <option value="HYBRID_MODE">Hybrid</option>
+                      </select>
+
+                      <select formControlName="premise_type" class="form-select" aria-label="Default select example">
+                        <option selected>Premise Type</option>
+                        <option value="COMMERCIAL">Commercial</option>
+                        <option value="RESIDENTIAL">Resiential</option>
+                      </select>
+
+                       <div class="form-group">              
+                            <label for="guard_scan_times">Scan Times</label>
+                            <input type="text" formControlName="guard_scan_times" id="guard_scan_times" class="form-control">
+                            <small *ngIf="guard_scan_times?.invalid && guard_scan_times?.touched"  style="color:red" class="form-text">*</small>
+                        </div>
+
+                       <div class="form-group">
+                           <label for="guard_scan_minimum_distance">Scan Minimum Distance</label>
+                           <input type="text" formControlName="guard_scan_minimum_distance" class="form-control" id="guard_scan_minimum_distance">
+                           <small *ngIf="guard_scan_minimum_distance?.invalid && guard_scan_minimum_distance?.touched"  style="color:red" class="form-text">Please enter a valid email.</small>
+                       </div>
+
+                       <div class="form-group">
+                           <label for="guard_delay_between_scans">Scan Delay</label>
+                           <input type="text" formControlName="guard_delay_between_scans" class="form-control" id="guard_delay_between_scans">
+                           <small *ngIf="guard_delay_between_scans?.invalid && guard_delay_between_scans?.touched" id="guard_delay_between_scans" style="color:red" class="form-text">*</small>
+                        </div>
+                       <button [disabled]="addAccountSettingsForm.invalid" type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Submit</button>
+                   </form>
+                <ng-template matStepLabel>Add Account</ng-template>
+                <div>
+                    <button class="btn btn-primary" [disabled]="!firstStep" mat-button matStepperNext>Next</button>
+                </div>
+            </mat-step>
+
+            <mat-step>
+                 <ng-template matStepLabel>Add Account Admin</ng-template>
+                 <form [formGroup]="createAdminForm" (submit)="createPremiseAdminFormSubmit()" style="max-width: 500px;" class="mx-auto">
+                    <h4 style="font-weight: bold;font-size: large;">create acc admin</h4>
+                    <div class="form-group my-1">
+                         <div class="col">
+                             <label for="first_name">Name</label>
+                             <input formControlName="first_name" class="form-control" type="text" name="first_name"  placeholder="First Name">
+                             <small *ngIf="first_name?.invalid && first_name?.touched" style="color: rgb(240, 79, 79);">*</small>
+                         </div>
+                         <div class="col">
+                             <label for="middle_name">Middle Name</label>
+                             <input formControlName="middle_name" class="form-control" type="text" name="middleName" placeholder="Middle Name">
+                             <small *ngIf="middle_name?.invalid && middle_name?.touched" style="color: rgb(240, 79, 79);">*</small>
+                         </div>
+                         <div class="col">
+                             <label for="last_name">Last Name</label>
+                             <input formControlName="last_name" class="form-control" type="text" name="lastName" placeholder="last name">
+                             <small *ngIf="last_name?.invalid && last_name?.touched" style="color: rgb(240, 79, 79);">*</small>
+                         </div>
+                    </div>
+                    <div class="form-group my-1">
+                        <label for="emailAddress">Email Address</label>
+                        <input formControlName="emailAddress" class="form-control" type="text" name="email" id="email" placeholder="email">
+                        <small *ngIf="last_name?.invalid && last_name?.touched" style="color: rgb(240, 79, 79);">*</small>
+                    </div>  
+                    <div class="form-group my-1">
+                         <label for="location">Phone No</label>
+                         <input formControlName="msisdn" class="form-control" type="text" name="msisdn"  placeholder="Phone">
+                         <small *ngIf="last_name?.invalid && last_name?.touched" style="color: rgb(240, 79, 79);">*</small>
+                     </div> 
+                     <div class="form-group my-1">
+                         <label for="location">Username</label>
+                         <input formControlName="username" class="form-control" type="text" name="username" placeholder="username">
+                         <small *ngIf="last_name?.invalid && last_name?.touched" style="color: rgb(240, 79, 79);">*</small>
+                     </div>       
+                                 
+                    <button type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Create Admin</button>
+                </form>        
+             </mat-step>
+         </mat-vertical-stepper>
+    </div>
+ </div>
+

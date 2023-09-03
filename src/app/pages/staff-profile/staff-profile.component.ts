@@ -86,6 +86,7 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
 
     this.getStaffShiftsService.getDetails(this.staffId, currentDate).subscribe((res) => {
       this.staffShifts = res.data
+      console.log(this.staffShifts)
       this.dataSource.data = res.data
     })
 
@@ -149,7 +150,7 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
 
   //get working hours 
   getDuration(checkin: Date, checkout: Date): string {
-    if (!checkin || !checkout || !(checkout instanceof Date)) {
+    if (!checkin || !checkout || !(checkout instanceof Date) || !(checkin instanceof Date)) {
       return ''; // Return an empty string if either checkin or checkout is not defined or checkout is not a Date
     }
 

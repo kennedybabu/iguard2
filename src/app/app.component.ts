@@ -86,5 +86,9 @@ export class AppComponent {
     this.router.navigate(['companies', this.currentPremiseId])
   }
 
+  viewPremiseNotifications(){
+    this.router.navigate(['notifications', this.currentPremiseId])
+  }
+
 
 }

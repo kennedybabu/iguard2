@@ -15,6 +15,9 @@ export class StaffLoginComponent {
 
   hasPassword: boolean = false
   loggedInStaff!: any
+  modifiedObject!: any
+  id!: any
+
 
   private userDataSubject: BehaviorSubject<any> = new BehaviorSubject(null)
   userData$: Observable<any> = this.userDataSubject.asObservable()
@@ -40,24 +43,28 @@ export class StaffLoginComponent {
     onSubmit(){
       if(this.hasPassword) {
         this.validateOtpService.validateStaffOtp(this.staffForm.value).subscribe((res) => {
-          if(res.user) {
-            let user = res.user 
+          console.log(res)
+          // if(res) {
+            // let user = res.user 
+
+            this.id = res.user?.user?.userId
+
             let userObject = 
             {
-              'user': res.message.user, 
-              'permissions': res.message.permissions,
-              'token': res.message.accessToken, 
-              'accountId': res.message.accountId, 
-              'userId': res.message.userId
+              'user': res?.user?.user, 
+              'permissions': res?.user?.permissions,
+              'token': res?.user?.accessToken, 
+              'accountId': res?.user?.accountId, 
+              'userId': res?.user?.user?.userId
             }
   
-            let modifiedObject = JSON.stringify(userObject)
+            this.modifiedObject = JSON.stringify(userObject)
             
-            this.userDataSubject.next(modifiedObject)  
-            localStorage.setItem('ulpSaH5wx1pO!E', JSON.stringify(userObject))
+            this.userDataSubject.next(this.modifiedObject)  
+            localStorage.setItem('ulpSaH5wx1pO!E', this.modifiedObject)
             this.notificationService.sendSuccessMessage('logged in successful')
-            this.router.navigate(['staff-profile'])
-          }
+            this.router.navigate(['staff-profile', +this.id])
+          // }
         })
       } if(!this.hasPassword) {
         this.getOtpService.getOtp(this.staffForm.value).subscribe(
@@ -65,7 +72,7 @@ export class StaffLoginComponent {
             this.notificationService.sendSuccessMessage(`OTP sent to ${this.staffForm.value.msisdn}`) 
             this.hasPassword = true  
           }, (error) => {
-            this.notificationService.sendErrorMessage(error.error.message)
+            this.notificationService.sendErrorMessage(error)
           })
       }
     }

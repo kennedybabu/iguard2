@@ -1,33 +1,32 @@
 <div class="container-fluid">
     <div class="row border-bottom-light px-3">
-        <h1 class="mx-5 my-3">Company</h1>
+        <h1 class="mx-5 my-3">Notifications</h1>
     </div>
 
     <div class="row" style="min-height: 96vh;">
         <div class="col-md-3 border-right-light p-4 text-center">
-            <h2 class="dark-text mb-0">{{companyObject?.name}}</h2>
-            <small class="mb-0 light-text">{{companyObject?.description}}</small>
+            <h2 class="dark-text mb-0">name</h2>
+            <small class="mb-0 light-text">desc</small>
         </div>
 
         <div class="col-md-9 px-0">        
             <div class="row">
                 <div class="d-flex justify-content-between p-4 align-items-center">
                     <div>
-                        <h3 style="font-weight: bold;" class="mb-0">Premise Companies</h3>
-                        <small class="light-text">View company details</small>
+                        <h3 style="font-weight: bold;" class="mb-0">Premise Notifications</h3>
+                        <small class="light-text">View premise notifications</small>
                     </div>    
                 </div>
             </div>              
             <div>
                 <mat-tab-group>
-                    <mat-tab label="Departments">
+                    <mat-tab label="Appointments">
                         <div class="row p-2">
                             <div class="d-flex flex-row-reverse">
-                                <button class="mx-1 primary-btn" style="padding: .4rem;"  (click)="createDepartment()">Add Department</button>
-                                <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Department">
+                                <input class="light-sm-border" type="text" matInput  #input style="width: 200px;padding: .5rem;" placeholder="Search Appointments">
                             </div>
                         </div>
-                        <table mat-table [dataSource]="dataSource" matSort>  
+                        <!-- <table mat-table [dataSource]="dataSource" matSort>  
             
                 
                             <ng-container matColumnDef="department_name">
@@ -46,16 +45,13 @@
                             <tr class="mat-row" *matNoDataRow>
                             <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                             </tr>
-                        </table>
+                        </table> -->
                         
                         <mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of users"></mat-paginator>
                     </mat-tab>
-                    <mat-tab label="Staff">
-                        <app-company-staff [companyDesignations]="companyDesignations" [companyId]="companyId"></app-company-staff>
-                    </mat-tab>
-                    <mat-tab label="Shifts"> 
-                        <app-company-shifts [companyId]="companyId"></app-company-shifts>
-                    </mat-tab>
+                    <mat-tab label="Leave Requests">
+                        <app-premise-leave-reqs></app-premise-leave-reqs>
+                    </mat-tab>               
                 </mat-tab-group>
             </div>             
         </div>

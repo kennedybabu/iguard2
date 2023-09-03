@@ -6,11 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AddShiftComponent } from 'src/app/components/company/add-shift/add-shift.component';
 import { CreateCompanyDeptComponent } from 'src/app/components/company/create-company-dept/create-company-dept.component';
+import { CreateCompanySettingsComponent } from 'src/app/components/company/create-company-settings/create-company-settings.component';
 import { Department } from 'src/app/model/department';
+import { GetCompanyAttendanceService } from 'src/app/services/company/get-company-attendance.service';
 import { GetCompanyDeptsService } from 'src/app/services/company/get-company-depts.service';
 import { GetCompanyDesignationsService } from 'src/app/services/company/get-company-designations.service';
 import { GetCompanyDetailsService } from 'src/app/services/company/get-company-details.service';
-import { GetCompanyShiftsService } from 'src/app/services/company/get-company-shifts.service';
+import { GetCompanySettingsService } from 'src/app/services/company/get-company-settings.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 
 @Component({
@@ -32,9 +34,10 @@ export class CompanyComponent implements AfterViewInit, OnInit {
     private getCompanyDepartmentsService: GetCompanyDeptsService,
     private dialog:MatDialog,
     private currentPremiseService: CurrentPremiseService, 
-    private getCompanyShiftsService: GetCompanyShiftsService,
+    private getCompanyAtendanceService: GetCompanyAttendanceService,
     private getCompanyDetailsService: GetCompanyDetailsService,
     private getCompanyDesignationsService:GetCompanyDesignationsService,
+    private getCompanySettingsService: GetCompanySettingsService
     ){
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.currentPremise = res
@@ -72,8 +75,15 @@ export class CompanyComponent implements AfterViewInit, OnInit {
       this.companyDesignations = res.message
     })
 
+    this.getCompanyAtendanceService.getAttendance(this.companyId).subscribe((res) => {
+      console.log(res)
+    })
 
-  
+
+    this.getCompanySettingsService.getSettings(this.companyId).subscribe((res) => {
+      console.log(res)
+    })
+
   }
 
   ngAfterViewInit(): void {
@@ -120,5 +130,17 @@ export class CompanyComponent implements AfterViewInit, OnInit {
   }
 
 
+  createSettings() {
+    const dialogRef = this.dialog.open(CreateCompanySettingsComponent, {
+      width:'450px', height: '400px', data: {
+        companyId: this.companyId,
+        companyDesignations: this.companyDesignations
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
 
 }
