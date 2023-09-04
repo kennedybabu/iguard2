@@ -5,8 +5,11 @@ import { GetPremiseAppointmentsService } from 'src/app/services/appointments/get
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GetPremiseCompaniesService } from 'src/app/services/company/get-premise-companies.service';
 import { GetPremiseLeaveRequestsService } from 'src/app/services/leave-req/get-premise-leave-requests.service';
+import { ChangeAppointmentStatusService } from 'src/app/services/notifications/change-appointment-status.service';
+import { ChangeLeaveReqsStatusService } from 'src/app/services/notifications/change-leave-reqs-status.service';
 import { GetAllPremisesService } from 'src/app/services/premise/get-all-premises.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
+import { NotificationService } from 'src/app/services/shared/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +30,11 @@ export class DashboardComponent implements OnInit {
   premiseCompanies: any [] = []
   totalStaff!: number
   premiseLeaveRequest: any [] = []
+  splicedAppointments: any []= []
+  splicedeLeaveRequests: any [] = []
 
+
+  
   private userCurrentPremiseSubject: BehaviorSubject<any> = new BehaviorSubject(null)
   currentPremiseData$: Observable<any> = this.userCurrentPremiseSubject.asObservable()
 
@@ -39,7 +46,10 @@ export class DashboardComponent implements OnInit {
     private getPremiseAppointmntService:GetPremiseAppointmentsService,
     private getPremiseLeaveReqServices: GetPremiseLeaveRequestsService,
     private currentPremiseService:CurrentPremiseService,
-    private getPremiseCompaniesService: GetPremiseCompaniesService
+    private getPremiseCompaniesService: GetPremiseCompaniesService,
+    private changeLeaveReqsStatusService: ChangeLeaveReqsStatusService,
+    private changeAppointmentStatusService:ChangeAppointmentStatusService,
+    private notificationService:NotificationService
     ){
 
       this.authService.userData$.subscribe((res) => {
@@ -105,6 +115,50 @@ export class DashboardComponent implements OnInit {
 
       this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
         this.premiseAppointments = res?.message.info
+        this.splicedAppointments = this.premiseAppointments.slice(0,4) 
+
+      })
+
+
+      this.getPremiseLeaveReqServices.getDetails(this.currentDate, this.storedPremise.premise_id).subscribe((res) => {
+        this.premiseLeaveRequest = res.message.info
+        this.splicedeLeaveRequests = this.premiseLeaveRequest.slice(0,4)
+
+      })
+
+      
+    })  
+    
+    
+    //
+  }
+
+
+  changePremise(premiseId: number) {
+    this.showingPremiseId = +premiseId 
+
+    this.getAllPremisesService.getPremises(this.activeUser?.accountId).subscribe((res: any) => {
+      if(res.statusCode === 702) {
+        this.premises = res.message 
+
+        let item = localStorage.getItem('currentPremise') 
+
+        if(item) {
+
+          this.currentPremise = JSON.parse(item)
+          this.currentPremiseService.currentPremiseSubject.next(JSON.stringify(this.currentPremise))
+          this.showingPremiseId = this.currentPremise?.premise_id
+        } else {
+          this.currentPremise = this.premises[0] 
+          this.showingPremiseId = this.currentPremise?.premise_id
+          this.currentPremiseService.currentPremiseSubject.next(JSON.stringify(this.currentPremise))
+          localStorage.setItem('currentPremise', JSON.stringify(this.currentPremise))
+        }        
+      }
+
+
+      this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
+        this.premiseAppointments = res?.message.info
       })
 
 
@@ -113,7 +167,38 @@ export class DashboardComponent implements OnInit {
       })
 
       
-    })    
-    
+    }) 
+  }
+
+  approveAppointment(id: number,status: string){
+    this.changeAppointmentStatusService.changeStatus(id, status).subscribe((res) => {
+      if(res.statusCode === 701){
+        this.notificationService.sendErrorMessage(res.message)
+        this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
+          this.premiseAppointments = res?.message.info
+        })
+      }else if(res.statusCode === 702 ){      
+        this.notificationService.sendSuccessMessage(res.message)
+        this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
+          this.premiseAppointments = res?.message.info
+        })
+      } else {
+        this.notificationService.sendErrorMessage('something went wrong,try again')
+      }
+    })
+  }
+
+  approveLeave(reqid:number, action:string){
+    this.changeLeaveReqsStatusService.changeStatus(reqid, action).subscribe((res) => {
+      if(res.statusCode === 702){
+        this.notificationService.sendSuccessMessage(res.message)
+        this.getPremiseLeaveReqServices.getDetails(this.currentDate, this.storedPremise.premise_id).subscribe((res) => {
+          this.premiseLeaveRequest = res.message.info
+        })
+      } else {
+        this.notificationService.sendErrorMessage('something went wrong,try again')
+
+      }
+    })
   }
 }

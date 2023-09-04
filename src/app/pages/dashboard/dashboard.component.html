@@ -96,6 +96,38 @@
                         <small class="light-text">Lorem ipsum dolor sit amet.</small>
                     </div>
                 </div>
+                <table *ngIf="splicedAppointments.length > 0" class="table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Visitor</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Phone no.</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let appointment of splicedAppointments">
+                        <td>{{appointment.visitor}}</td>
+                        <td>{{appointment.start | date: 'shortDate'}}</td>
+                        <td>{{appointment.msisdn}}</td>
+                        <td ><span [ngClass]="appointment.status === 'APPROVED' ? 'approved' : 'pending'" class="p-1 rounded shadow-sm">{{appointment.status | lowercase }}</span></td>
+                        <td>
+                            <div *ngIf="appointment.status !== 'APPROVED'" id="controls" class="d-flex align-items-center gap-1">
+                                <div style="cursor: pointer;" class="yes">
+                                    <i  (click)="approveAppointment(appointment.id, 'APPROVED')" class="bi bi-check-circle"></i>
+                                </div>
+                                <div style="cursor: pointer;" class="no">
+                                    <i (click)="approveAppointment(appointment.id, 'DISAPPROVE')" class="bi bi-x-circle"></i>
+                                </div>
+                            </div>
+                            <div *ngIf="appointment.status === 'APPROVED'">
+                                -
+                            </div>
+                        </td>
+                      </tr>                   
+                    </tbody>
+                  </table>
             </div>
         </div>
 
@@ -103,9 +135,35 @@
             <h3>Leave Requests</h3>
             <div>
                 <p class="mb-0 light-text" *ngIf="premiseLeaveRequest.length < 1">No leave requests</p>
-                <div *ngFor="let req of premiseLeaveRequest" class="leave-request shadow my-3">
-                    
-                </div>
+                <table class="table mb-0" *ngIf="premiseLeaveRequest.length > 0">
+                    <thead>
+                      <tr>
+                        <th scope="col">Staff Name</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">From</th>
+                        <th scope="col">status</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let req of splicedeLeaveRequests">
+                        <td>{{req.staff_name}}</td>
+                        <td>{{req.reason | truncate: 8}}</td>
+                        <td>{{req.requested_from | date:'shortDate'}}</td>
+                        <td><span [ngClass]="req.status === 'APPROVED' ? 'approved' : 'pending'" class="p-1 rounded shadow-sm">{{ req.status | lowercase }}</span></td>
+                        <td>
+                            <div id="controls" class="d-flex align-items-center gap-1">
+                                <div style="cursor: pointer;" class="yes">
+                                    <i  (click)="approveLeave(req.id, 'APPROVED')" class="bi bi-check-circle"></i>
+                                </div>
+                                <div style="cursor: pointer;" class="no">
+                                    <i (click)="approveLeave(req.id, 'CANCELLED')" class="bi bi-x-circle"></i>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>    
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>

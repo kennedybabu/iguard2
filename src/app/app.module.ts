@@ -48,6 +48,7 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
 import { PremiseLeaveReqsComponent } from './components/premise/premise-leave-reqs/premise-leave-reqs.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { CreateAccountComponent } from './components/accounts/create-account/create-account.component';
+import { TruncatePipe } from './truncate.pipe';
 
 
 
@@ -79,7 +80,8 @@ import { CreateAccountComponent } from './components/accounts/create-account/cre
     NotificationsComponent,
     PremiseLeaveReqsComponent,
     AccountsComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

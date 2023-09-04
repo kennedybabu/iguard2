@@ -92,4 +92,16 @@ body {
             background-color: rgb(245, 245, 231)!important;
         }
     }
+
+
+    .approved, .active , .started {
+        color:#2d884d;
+        background-color: #2d884d63;
+    }
+
+
+    .pending {
+        color: 	#fecf6d;
+        background-color: #fed06d6e;
+    }
 }

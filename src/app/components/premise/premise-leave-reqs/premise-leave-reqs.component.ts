@@ -16,7 +16,7 @@ export class PremiseLeaveReqsComponent implements OnInit, AfterViewInit {
 
   premiseLeaveRequests: any [] = []
 
-  displayedColumns: string[] = ['firstName', 'msisdn', 'email', 'designation', 'fingerprint'];
+  displayedColumns: string[] = ['staff_name', 'reason', 'requested_from', 'status', 'action'];
   dataSource = new MatTableDataSource<Staff>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -26,6 +26,9 @@ export class PremiseLeaveReqsComponent implements OnInit, AfterViewInit {
   constructor(private getPremiseLeaveReqsService:GetPremiseLeaveRequestsService){}
 
   ngOnInit(): void {
+    this.getPremiseLeaveReqsService.getDetails(this.premiseId, this.premiseId).subscribe((res)=> {
+      this.dataSource.data = res.message
+    })
     
   }
 
