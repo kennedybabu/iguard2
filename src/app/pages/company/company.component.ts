@@ -72,6 +72,7 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
 
     this.getCompanyDesignationsService.getDesignations(this.companyId).subscribe((res) => {
+      console.log(res)
       this.companyDesignations = res.message
     })
 
@@ -140,6 +141,19 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       
+    });
+  }
+
+  createPremiseSettings() {
+    const dialogRef = this.dialog.open(CreateCompanySettingsComponent, {
+      width:'450px', data: {
+        companyId: this.companyId,
+        companyDesignations: this.companyDesignations
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+   
     });
   }
 

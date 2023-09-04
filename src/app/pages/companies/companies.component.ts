@@ -10,6 +10,7 @@ import {MatSort} from '@angular/material/sort';
 import { GetPremiseDetailsService } from 'src/app/services/premise/get-premise-details.service';
 import { CreateCompanyComponent } from 'src/app/components/company/create-company/create-company.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CreateCompanySettingsComponent } from 'src/app/components/company/create-company-settings/create-company-settings.component';
 
 
 @Component({

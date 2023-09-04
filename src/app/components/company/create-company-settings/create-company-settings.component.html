@@ -1,1 +1,39 @@
-<p>create-company-settings works!</p>
+<div class="p-3">
+    <div class="row">
+        <h2 class="mb-0">Add Company Settings</h2>
+        <hr>
+        <form [formGroup]="createCompanySettingsForm" (submit)="onFormSubmit()">
+            <div class="form-group mb-3">
+                <label>Leave Approvals</label>
+                <select  class="form-select" formControlName="leave_approvals_designation">
+                    <option value="" disabled>Choose...</option>
+                    <option *ngFor="let designation of companyDesignations"  [ngValue]="designation.id">{{designation.description}}</option>             
+                </select>
+            </div> 
+
+            <div class="form-group mb-3">
+                <label>Appointment Approvals</label>
+                <select  class="form-select" formControlName="appointment_approvals_designation">
+                    <option value="" disabled>Choose...</option>
+                    <option *ngFor="let designation of companyDesignations"  [ngValue]="designation.id">{{designation.description}}</option>             
+                </select>
+            </div> 
+
+            <div class="form-group mb-3">
+                <label for="">Exclude Appointments</label>
+                <div class="d-flex align-items-center" *ngFor="let role of companyDesignations">
+                    <input (change)="getSelectedRoles($event)" formControlName="excluded_appointments_designation" class="mx-1" type="checkbox"  [name]="role.description" [value]="role.id">
+                    <label>{{role.description}}</label>
+                </div>
+            </div> 
+        
+            <div class="form-group">
+                <label for="sms_name">SMS Name</label> 
+                <input formControlName="sms_name" type="text" name="sms_name" id="sms_name" class="form-control">
+            </div>
+            <button class="mt-3">Add Settings</button>
+        </form>
+    </div>
+</div>
+
+

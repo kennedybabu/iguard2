@@ -6,7 +6,10 @@
     <div class="row" style="min-height: 96vh;">
         <div class="col-md-3 border-right-light p-4 text-center">
             <h2 class="dark-text mb-0">{{companyObject?.name}}</h2>
-            <small class="mb-0 light-text">{{companyObject?.description}}</small>
+            <small class="mb-0 light-text">{{companyObject?.description}}</small> 
+
+            <hr>
+            <button class="mx-1" style="padding: .4rem;" (click)="createPremiseSettings()">Add Settings</button>
         </div>
 
         <div class="col-md-9 px-0">        

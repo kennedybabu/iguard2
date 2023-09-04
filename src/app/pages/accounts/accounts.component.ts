@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CreateAccountComponent } from 'src/app/components/accounts/create-account/create-account.component';
 import { Shift } from 'src/app/model/shift';
+import { GetAccountsService } from 'src/app/services/accounts/get-accounts.service';
 
 @Component({
   selector: 'app-accounts',
@@ -14,9 +15,10 @@ import { Shift } from 'src/app/model/shift';
 export class AccountsComponent implements AfterViewInit, OnInit {
 
 
-  constructor(private dialog:MatDialog){}
+  constructor(private dialog:MatDialog,
+    private getAccountsService:GetAccountsService){}
 
-  displayedColumns: string[] = ['date', 'checkin', 'checkout', 'work_hrs', 'status'];
+  displayedColumns: string[] = ['accountName', 'description', 'msisdn'];
   dataSource = new MatTableDataSource<Shift>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,7 +33,9 @@ export class AccountsComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit(): void {
-    
+    this.getAccountsService.getAccounts().subscribe((res) => {
+      this.dataSource.data = res.data
+    })
   }
 
   applyFilter(event: Event) {
