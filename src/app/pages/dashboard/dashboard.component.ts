@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GetPremiseAppointmentsService } from 'src/app/services/appointments/get-premise-appointments.service';
@@ -8,8 +8,33 @@ import { GetPremiseLeaveRequestsService } from 'src/app/services/leave-req/get-p
 import { ChangeAppointmentStatusService } from 'src/app/services/notifications/change-appointment-status.service';
 import { ChangeLeaveReqsStatusService } from 'src/app/services/notifications/change-leave-reqs-status.service';
 import { GetAllPremisesService } from 'src/app/services/premise/get-all-premises.service';
+import { GetPremiseAttendanceService } from 'src/app/services/premise/get-premise-attendance.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 import { NotificationService } from 'src/app/services/shared/notification.service';
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexResponsive,
+  ApexXAxis,
+  ApexLegend,
+  ApexFill
+} from "ng-apexcharts";
+
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  responsive: ApexResponsive[];
+  xaxis: ApexXAxis;
+  legend: ApexLegend;
+  fill: ApexFill;
+};
+
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +42,9 @@ import { NotificationService } from 'src/app/services/shared/notification.servic
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  @ViewChild("chart") chart!: ChartComponent;
+  public chartOptions!: ChartOptions;
 
   selected!: Date | null;
   activeUser!: any
@@ -34,7 +62,17 @@ export class DashboardComponent implements OnInit {
   splicedeLeaveRequests: any [] = []
 
 
-  
+  premiseAttendance: any [] = []
+
+  pendingShifts: any [] = []
+  endedShifts: any [] = []
+  startedShifts: any [] = []
+  companyNames: any [] = []
+
+
+
+
+
   private userCurrentPremiseSubject: BehaviorSubject<any> = new BehaviorSubject(null)
   currentPremiseData$: Observable<any> = this.userCurrentPremiseSubject.asObservable()
 
@@ -49,8 +87,47 @@ export class DashboardComponent implements OnInit {
     private getPremiseCompaniesService: GetPremiseCompaniesService,
     private changeLeaveReqsStatusService: ChangeLeaveReqsStatusService,
     private changeAppointmentStatusService:ChangeAppointmentStatusService,
-    private notificationService:NotificationService
+    private notificationService:NotificationService,
+    private getPremiseAttendanceService:GetPremiseAttendanceService
     ){
+
+      this.chartOptions = {
+        series: [    
+        ],
+        chart: {
+          type: "bar",
+          height: 350,
+          stacked: true,
+          stackType: "100%"
+        },
+        dataLabels:{},
+        plotOptions:{},
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                position: "bottom",
+                offsetX: -10,
+                offsetY: 0
+              }
+            }
+          }
+        ],
+        xaxis: {
+          categories: this.companyNames
+        },
+        fill: {
+          opacity: 1
+        },
+        legend: {
+          position: "right",
+          offsetX: 0,
+          offsetY: 50
+        }
+      };
+      
+      
 
       this.authService.userData$.subscribe((res) => {
         let user = res
@@ -62,8 +139,7 @@ export class DashboardComponent implements OnInit {
         this.storedPremise = JSON.parse(res)
  
         this.premiseId = this.storedPremise?.premise_id 
-      })  
-      
+      })   
     }
     
     change(){
@@ -77,21 +153,25 @@ export class DashboardComponent implements OnInit {
     
     
     ngOnInit(): void {
+      
+      this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
+        this.premiseCompanies = res?.message    
+        
+  
+      this.totalStaff = 0 
+  
+      //get total staff in the premise
+      for(let company of this.premiseCompanies) {
+        this.totalStaff += company.staff_count
 
-    this.totalStaff = 0 
-
-    //get total staff in the premise
-    for(let company of this.premiseCompanies) {
-      this.totalStaff += company.staff_count
-    }
-
-    this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
-      this.premiseCompanies = res?.message    
+        this.companyNames.push(company.name)
+      }
 
     })
 
 
     this.currentDate = new Date() 
+
     //get user premises    
     this.getAllPremisesService.getPremises(this.activeUser?.accountId).subscribe((res: any) => {
       if(res.statusCode === 702) {
@@ -115,20 +195,42 @@ export class DashboardComponent implements OnInit {
 
       this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
         this.premiseAppointments = res?.message.info
-        this.splicedAppointments = this.premiseAppointments.slice(0,4) 
-
+        this.splicedAppointments = this.premiseAppointments.slice(0,4)
       })
 
 
       this.getPremiseLeaveReqServices.getDetails(this.currentDate, this.storedPremise.premise_id).subscribe((res) => {
         this.premiseLeaveRequest = res.message.info
         this.splicedeLeaveRequests = this.premiseLeaveRequest.slice(0,4)
-
       })
 
+      this.getPremiseAttendanceService.getAttendance(this.premiseId).subscribe((res) => {
+        this.premiseAttendance = res.message  
+
+        for(let attendance of this.premiseAttendance) {
+          const {ended, pending, started} = attendance 
+
+          this.startedShifts.push(started)
+          this.pendingShifts.push(pending)
+          this.endedShifts.push(ended)
+
+          // this.chartOptions.labels = this.companyNames 
+
+        }
+
+
+        this.chartOptions.series = [
+          {name: 'started', data: this.startedShifts},
+          {name: 'pending', data: this.pendingShifts},
+          {name: 'ended', data: this.endedShifts}
+          
+        ]
+
+        this.chartOptions.xaxis.categories = this.companyNames
+        console.log(this.startedShifts, this.pendingShifts, this.endedShifts)
+      })
       
-    })  
-    
+    }) 
     
     //
   }

@@ -49,7 +49,7 @@ import { PremiseLeaveReqsComponent } from './components/premise/premise-leave-re
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { CreateAccountComponent } from './components/accounts/create-account/create-account.component';
 import { TruncatePipe } from './truncate.pipe';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 
@@ -81,7 +81,7 @@ import { TruncatePipe } from './truncate.pipe';
     PremiseLeaveReqsComponent,
     AccountsComponent,
     CreateAccountComponent,
-    TruncatePipe
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +104,8 @@ import { TruncatePipe } from './truncate.pipe';
     MatDialogModule,
     FormsModule,
     ScheduleModule, 
+    NgApexchartsModule
+    
   ],
   providers: [
     DatePipe,

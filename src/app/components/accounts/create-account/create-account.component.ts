@@ -4,6 +4,7 @@ import { CreateAccountService } from 'src/app/services/accounts/create-account.s
 import { CreatePremiseAdminService } from 'src/app/services/accounts/create-premise-admin.service';
 import { CreatePremiseSettingsService } from 'src/app/services/accounts/create-premise-settings.service';
 import { CreatePremiseService } from 'src/app/services/accounts/create-premise.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { NotificationService } from 'src/app/services/shared/notification.service';
 
 @Component({
@@ -24,8 +25,13 @@ export class CreateAccountComponent {
     private createAccountService:CreateAccountService,
     private createPremiseService: CreatePremiseService,
     private createPremiseAdminService:CreatePremiseAdminService,
-    private createPremiseSettingsService:CreatePremiseSettingsService
+    private createPremiseSettingsService:CreatePremiseSettingsService,
+    private authService:AuthService
   ){
+    this.authService.userData$.subscribe((res) => {
+      let user = JSON.parse(res) 
+      this.accountId = user?.accountId
+    })
 
   }
 

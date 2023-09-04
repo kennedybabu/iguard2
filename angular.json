@@ -20,6 +20,9 @@
             "outputPath": "dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "apexcharts"
+            ],
             "polyfills": [
               "zone.js"
             ],

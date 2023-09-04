@@ -28,6 +28,7 @@ export class CompanyComponent implements AfterViewInit, OnInit {
   currentPremise!: any
   companyObject!: any
   companyDesignations: any [] = []
+  companySettings!: any
 
   constructor(
     private route: ActivatedRoute,
@@ -72,7 +73,6 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
 
     this.getCompanyDesignationsService.getDesignations(this.companyId).subscribe((res) => {
-      console.log(res)
       this.companyDesignations = res.message
     })
 
@@ -82,7 +82,9 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
 
     this.getCompanySettingsService.getSettings(this.companyId).subscribe((res) => {
-      console.log(res)
+      this.companySettings = res.message 
+
+      console.log(this.companySettings)
     })
 
   }
