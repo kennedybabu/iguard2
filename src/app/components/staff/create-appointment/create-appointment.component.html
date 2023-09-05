@@ -7,7 +7,7 @@
             <label for="visitor_name">Name</label>
             <input formControlName="visitor_name" type="text" id="visitor_name" class="form-control">
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="form-group  col">
                 <label for="appointment_start">Start Time</label>
                 <input formControlName="appointment_start" type="datetime-local" name="appointment_start" id="appointment_start" class="form-control">
@@ -16,6 +16,20 @@
                 <label for="appointment_end">End Time</label>
                 <input formControlName="appointment_end" type="datetime-local" name="appointment_end" id="appointment_end" class="form-control">
             </div>
+        </div> -->
+        <div>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker">
+              <input matStartDate formControlName="appointment_start">
+              <input matEndDate formControlName="appointment_end">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker style="width: 100%;" #rangePicker>
+              <mat-date-range-picker-actions>
+                <button style="padding: .4rem;" mat-button mat-button color="primary" matDateRangePickerCancel>Cancel</button>
+                <button style="padding: .4rem;" mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
         </div>
         <div class="form-group">
             <label for="email">Email</label> 

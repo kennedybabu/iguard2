@@ -100,7 +100,11 @@ export class DashboardComponent implements OnInit {
           stacked: true,
           stackType: "100%"
         },
-        dataLabels:{},
+        dataLabels:{
+          style: {
+            colors: ['#FFB703', '#000000', '#06D6A0']
+          }
+        },
         plotOptions:{},
         responsive: [
           {
@@ -118,7 +122,8 @@ export class DashboardComponent implements OnInit {
           categories: this.companyNames
         },
         fill: {
-          opacity: 1
+          opacity: 1,
+          colors: ['#FFB703', '#000000', '#06D6A0']
         },
         legend: {
           position: "right",
@@ -227,7 +232,6 @@ export class DashboardComponent implements OnInit {
         ]
 
         this.chartOptions.xaxis.categories = this.companyNames
-        console.log(this.startedShifts, this.pendingShifts, this.endedShifts)
       })
       
     }) 

@@ -10,8 +10,22 @@
             <label for="reason">Reason</label>
             <input formControlName="reason" class="form-control" type="text" name="reason" id="reason" placeholder="reason">
             <small *ngIf="reason?.invalid && reason?.touched" style="color: rgb(240, 79, 79);">*Required</small>
-        </div>     
-        <div class="form-group my-1">
+        </div>  
+        <div>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="rangePicker">
+              <input matStartDate formControlName="from" >
+              <input matEndDate formControlName="to">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #rangePicker>
+              <mat-date-range-picker-actions>
+                <button style="padding: .4rem;" mat-button mat-button color="primary" matDateRangePickerCancel>Cancel</button>
+                <button style="padding: .4rem;" mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+              </mat-date-range-picker-actions>
+            </mat-date-range-picker>
+        </div>   
+        <!-- <div class="form-group my-1">
              <label for="from">From</label>
              <input formControlName="from" class="form-control" type="datetime-local" name="reason" id="from" placeholder="start">
              <small *ngIf="from?.invalid && from?.touched" style="color: rgb(240, 79, 79);">*Required</small>
@@ -20,7 +34,7 @@
              <label for="to">To</label>
              <input formControlName="to" class="form-control" type="datetime-local" name="to" id="to" placeholder="end">
              <small *ngIf="to?.invalid && to?.touched" style="color: rgb(240, 79, 79);">*Required</small>
-         </div>         
+         </div>          -->
         <button [disabled]="leaveForm.invalid"  type="submit" class="my-2" style="width: max-content;padding: .4rem;">Submit</button>
     </form>
 </div>
