@@ -2,8 +2,8 @@
     <div class="row flex-row-reverse text-end">
         <p class="mb-0 my-4 mx-1close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
    </div>
-    <h3>Add Departments</h3>
-    <form [formGroup]="createDepartmentForm" (submit)="onDepartmentFormSubmit()">
+   <h1 class="text-center fw-bold">Add Departments</h1>
+   <form [formGroup]="createDepartmentForm" (submit)="onDepartmentFormSubmit()">
         <div class="form-group">
             <label for="department_name">Dept Name</label> 
             <input formControlName="department_name" type="text" name="department_name" id="department_name" class="form-control">

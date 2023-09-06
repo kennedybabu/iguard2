@@ -38,7 +38,7 @@ export class UpdateCompanySettingsComponent {
   onFormSubmit(){
     this.updateCompanySettingsService.editSettings(this.editSettings.value, this.companyId, this.excludedDesignations.join(), this.companySettings.id).subscribe((res) => {
       if(res.statusCode === 702){
-        this.notificationService.sendSuccessMessage('updated')
+        this.notificationService.sendSuccessMessage('Settings Updated')
         this.dialogRef.close()
       } else {
         this.notificationService.sendErrorMessage(res.message.info)

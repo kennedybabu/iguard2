@@ -51,6 +51,8 @@ import { CreateAccountComponent } from './components/accounts/create-account/cre
 import { TruncatePipe } from './truncate.pipe';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UpdateCompanySettingsComponent } from './components/company/update-company-settings/update-company-settings.component';
+import { CreateCompanyLeaveComponent } from './components/company/create-company-leave/create-company-leave.component';
+import { CompanyLeavesComponent } from './components/company/company-leaves/company-leaves.component';
 
 
 
@@ -84,6 +86,8 @@ import { UpdateCompanySettingsComponent } from './components/company/update-comp
     CreateAccountComponent,
     TruncatePipe,
     UpdateCompanySettingsComponent,
+    CreateCompanyLeaveComponent,
+    CompanyLeavesComponent,
   ],
   imports: [
     BrowserModule,

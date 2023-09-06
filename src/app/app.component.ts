@@ -4,6 +4,7 @@ import { NotificationService } from './services/shared/notification.service';
 import { NavigationHistoryService } from './services/shared/navigation-history.service';
 import { CurrentPremiseService } from './services/shared/current-premise.service';
 import { Router } from '@angular/router';
+import { GetAccountsService } from './services/accounts/get-accounts.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,8 @@ export class AppComponent {
     public authService:AuthService,
     private notificationService:NotificationService,
     private currentPremiseService: CurrentPremiseService,
-    private router:Router
+    private router:Router,
+    private getAccountsService: GetAccountsService
     ){
 
     this.navigationHistoryService.startSaveHistory()
@@ -69,9 +71,15 @@ export class AppComponent {
         setTimeout(() => {
           this.successNotification = ''
         }, 2000)
-      }) 
+      })
+
+  }
 
 
+  update(){
+    this.getAccountsService.getAccounts().subscribe((res) => {
+      console.log('logged')
+    })
   }
 
   
@@ -83,10 +91,10 @@ export class AppComponent {
 
 
   logout(){
-    this.router.navigate(['login'])
     localStorage.removeItem('ulpSaH5wx1pO!E')
     localStorage.removeItem('currentPremise')
-
+    this.update()
+    this.router.navigate(['login'])
   }
 
 
