@@ -50,6 +50,7 @@ import { AccountsComponent } from './pages/accounts/accounts.component';
 import { CreateAccountComponent } from './components/accounts/create-account/create-account.component';
 import { TruncatePipe } from './truncate.pipe';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { UpdateCompanySettingsComponent } from './components/company/update-company-settings/update-company-settings.component';
 
 
 
@@ -82,6 +83,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     AccountsComponent,
     CreateAccountComponent,
     TruncatePipe,
+    UpdateCompanySettingsComponent,
   ],
   imports: [
     BrowserModule,

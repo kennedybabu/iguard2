@@ -44,8 +44,8 @@ export class StaffLoginComponent {
       if(this.hasPassword) {
         this.validateOtpService.validateStaffOtp(this.staffForm.value).subscribe((res) => {
           console.log(res)
-          // if(res) {
-            // let user = res.user 
+          if(res.statusCode === 702) {
+            let user = res.user 
 
             this.id = res.user?.user?.userId
 
@@ -64,7 +64,10 @@ export class StaffLoginComponent {
             localStorage.setItem('ulpSaH5wx1pO!E', this.modifiedObject)
             this.notificationService.sendSuccessMessage('logged in successful')
             this.router.navigate(['staff-profile', +this.id])
-          // }
+          } else {
+            console.log(res)
+            this.notificationService.sendErrorMessage(res.message)
+          }
         })
       } if(!this.hasPassword) {
         this.getOtpService.getOtp(this.staffForm.value).subscribe(
@@ -72,7 +75,11 @@ export class StaffLoginComponent {
             this.notificationService.sendSuccessMessage(`OTP sent to ${this.staffForm.value.msisdn}`) 
             this.hasPassword = true  
           }, (error) => {
-            this.notificationService.sendErrorMessage(error)
+            if(error.status === 0) {
+              this.notificationService.sendErrorMessage('User is not a staff')
+            } else {
+              this.notificationService.sendErrorMessage('Something went wrong try again')
+            }
           })
       }
     }

@@ -3,9 +3,9 @@
         <p class="mb-0 my-4 mx-1 close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
    </div>
     <div class="row">
-        <h2 class="mb-0">Add Company Settings</h2>
+        <h2 class="mb-0">Edit Company Settings</h2>
         <hr>
-        <form [formGroup]="createCompanySettingsForm" (submit)="onFormSubmit()">
+        <form [formGroup]="editSettings" (submit)="onFormSubmit()">
             <div class="form-group mb-3">
                 <label>Leave Approvals</label>
                 <select  class="form-select" formControlName="leave_approvals_designation">
@@ -34,9 +34,10 @@
                 <label for="sms_name">SMS Name</label> 
                 <input formControlName="sms_name" type="text" name="sms_name" id="sms_name" class="form-control">
             </div>
-            <button class="mt-3">Add Settings</button>
+            <button class="mt-3">Edit Settings</button>
         </form>
     </div>
 </div>
+
 
 

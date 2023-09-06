@@ -54,5 +54,8 @@ export class CreateCompanySettingsComponent {
   }
 
   
+  closeDialog(){
+    this.dialogRef.close()
+  }
 
 }

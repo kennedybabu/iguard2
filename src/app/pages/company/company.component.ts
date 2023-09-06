@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params } from '@angular/router';
+import { UpdateCompanySettingsComponent } from 'src/app/components/company/update-company-settings/update-company-settings.component';
 import { AddShiftComponent } from 'src/app/components/company/add-shift/add-shift.component';
 import { CreateCompanyDeptComponent } from 'src/app/components/company/create-company-dept/create-company-dept.component';
 import { CreateCompanySettingsComponent } from 'src/app/components/company/create-company-settings/create-company-settings.component';
@@ -13,6 +14,7 @@ import { GetCompanyDeptsService } from 'src/app/services/company/get-company-dep
 import { GetCompanyDesignationsService } from 'src/app/services/company/get-company-designations.service';
 import { GetCompanyDetailsService } from 'src/app/services/company/get-company-details.service';
 import { GetCompanySettingsService } from 'src/app/services/company/get-company-settings.service';
+import { UpdateCompanySettingsService } from 'src/app/services/company/update-company-settings.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 
 @Component({
@@ -106,7 +108,7 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
   createDepartment() {
     const dialogRef = this.dialog.open(CreateCompanyDeptComponent, {
-      width:'450px', height: '400px', data: {
+      width:'450px', data: {
         companyId: this.companyId
       }
     });
@@ -136,6 +138,19 @@ export class CompanyComponent implements AfterViewInit, OnInit {
   createSettings() {
     const dialogRef = this.dialog.open(CreateCompanySettingsComponent, {
       width:'450px', height: '400px', data: {
+        companyId: this.companyId,
+        companyDesignations: this.companyDesignations
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
+  updateCompanySettings() {
+    const dialogRef = this.dialog.open(UpdateCompanySettingsComponent, {
+      width:'450px', data: {
         companyId: this.companyId,
         companyDesignations: this.companyDesignations
       }

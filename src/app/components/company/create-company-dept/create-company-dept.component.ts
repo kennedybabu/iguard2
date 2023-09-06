@@ -43,4 +43,9 @@ export class CreateCompanyDeptComponent {
       })
     }
 
+
+    closeDialog(){
+      this.dialogRef.close()
+    }
+
 }

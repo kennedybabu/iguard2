@@ -18,13 +18,15 @@ export class AppComponent {
 
   currentPremise!: any 
   currentPremiseId!: number
+  userPermission:any [] = []
 
+  title = 'iguard';
 
-
+  permission!: any
 
   constructor(
     public navigationHistoryService: NavigationHistoryService,
-    private authService:AuthService,
+    public authService:AuthService,
     private notificationService:NotificationService,
     private currentPremiseService: CurrentPremiseService,
     private router:Router
@@ -34,6 +36,12 @@ export class AppComponent {
 
     this.authService.userData$.subscribe((res) => {
       this.user = JSON.parse(res)
+
+      this.userPermission = this.user?.permissions
+
+      this.permission = this.userPermission.map((item: any) => {
+        return item['role_name']
+      })
     })
 
 
@@ -66,7 +74,7 @@ export class AppComponent {
 
   }
 
-  title = 'app';
+  
   openedSidebar:boolean = false
 
   toggleNavbar(){

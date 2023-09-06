@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { CreateCompanyService } from 'src/app/services/company/create-company.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 import { NotificationService } from 'src/app/services/shared/notification.service';
@@ -16,7 +17,9 @@ export class CreateCompanyComponent {
 
   constructor(private createCompanyService: CreateCompanyService,
     private currentPremiseService: CurrentPremiseService,
-    private notificationService:NotificationService){
+    private notificationService:NotificationService,
+    private dialogRef: MatDialogRef<CreateCompanyComponent>
+    ){
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.currentPremise = JSON.parse(res)
       })
@@ -37,6 +40,10 @@ export class CreateCompanyComponent {
         this.notificationService.sendErrorMessage('something went wrong, try again')
       }
     })
+  }
+
+  closeDialog(){
+    this.dialogRef.close()
   }
 
 }

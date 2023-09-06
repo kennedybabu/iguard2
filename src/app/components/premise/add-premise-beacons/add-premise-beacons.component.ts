@@ -44,7 +44,9 @@ export class AddPremiseBeaconsComponent {
   }
 
 
-
-
+  
+  closeDialog(){
+    this.dialogRef.close()
+  }
 
 }

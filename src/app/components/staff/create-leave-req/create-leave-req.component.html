@@ -1,4 +1,7 @@
 <div class="py-5">
+    <div class="row flex-row-reverse text-end">
+        <p class="mb-0 my-4 mx-1 close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
+   </div>
     <form [formGroup]="leaveForm" (submit)="onSubmit()" style="max-width: 500px;" class="mx-auto">
         <h4 style="font-weight: bold;font-size: large;">Request Leave</h4>
         <div class="form-group my-1">

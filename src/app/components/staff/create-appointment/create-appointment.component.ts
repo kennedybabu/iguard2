@@ -50,4 +50,9 @@ export class CreateAppointmentComponent {
       }
     })
   }
+
+  closeDialog(){
+    this.dialogRef.close()
+  }
+
 }

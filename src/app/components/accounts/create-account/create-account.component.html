@@ -1,4 +1,7 @@
 <div class="container">
+   <div class="row flex-row-reverse text-end">
+        <p class="mb-0 my-4 mx-1close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
+   </div>
     <div class="row">
          <mat-vertical-stepper linear class="rounded shadow-sm p-3">
              <mat-step [stepControl]="createAccountForm">
@@ -39,7 +42,7 @@
                              <input type="password" formControlName="password" id="password" class="form-control">
                              <small *ngIf="password?.invalid && password?.touched" id="emailHelp" style="color:red" class="form-text">*</small>
                         </div>
-                        <button (click)="createAccount()" [disabled]="createAccountForm.invalid" type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Submit</button>
+                        <button (click)="createAccount()" [disabled]="createAccountForm.invalid" type="submit" class="my-2" style="width: 100%;">Submit</button>
                     </form>
                  <ng-template matStepLabel>Add Account</ng-template>
                  <div>
@@ -77,8 +80,8 @@
                 </form>
                  <ng-template matStepLabel>Add Premise</ng-template>
                  <div>
-                     <button class="btn btn-secondary mx-1" mat-button matStepperPrevious>Prev</button>
-                     <button class="btn btn-success" mat-button matStepperNext>Next</button>
+                     <button class="mx-1" mat-button matStepperPrevious>Prev</button>
+                     <button mat-button matStepperNext>Next</button>
                  </div>
              </mat-step>
 
@@ -121,7 +124,7 @@
                            <input type="text" formControlName="guard_delay_between_scans" class="form-control" id="guard_delay_between_scans">
                            <small *ngIf="guard_delay_between_scans?.invalid && guard_delay_between_scans?.touched" id="guard_delay_between_scans" style="color:red" class="form-text">*</small>
                         </div>
-                       <button [disabled]="addAccountSettingsForm.invalid" type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Submit</button>
+                       <button [disabled]="addAccountSettingsForm.invalid" type="submit" class="my-2" style="width: 100%;">Submit</button>
                    </form>
                 <ng-template matStepLabel>Add Account</ng-template>
                 <div>
@@ -166,7 +169,7 @@
                          <small *ngIf="last_name?.invalid && last_name?.touched" style="color: rgb(240, 79, 79);">*</small>
                      </div>       
                                  
-                    <button type="submit" class="btn my-2 btn-outline-info" style="width: 100%;">Create Admin</button>
+                    <button type="submit" class="my-2" style="width: 100%;">Create Admin</button>
                 </form>        
              </mat-step>
          </mat-vertical-stepper>

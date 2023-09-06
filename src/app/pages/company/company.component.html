@@ -9,7 +9,8 @@
             <small class="mb-0 light-text">{{companyObject?.description}}</small> 
 
             <hr>
-            <button class="mx-1" style="padding: .4rem;" (click)="createPremiseSettings()">Add Settings</button>
+            <button *ngIf="companySettings" class="mx-1" style="padding: .4rem;" (click)="updateCompanySettings()">Update Settings</button>
+            <button *ngIf="!companySettings" class="mx-1" style="padding: .4rem;" (click)="createPremiseSettings()">Add Settings</button>
         </div>
 
         <div class="col-md-9 px-0">        

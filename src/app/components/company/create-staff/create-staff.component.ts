@@ -94,4 +94,8 @@ export class CreateStaffComponent {
     return this.createStaffForm.get('msisdn')
   }
 
+  closeDialog(){
+    this.dialogRef.close()
+  }
+
 }

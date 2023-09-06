@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { CreateAccountService } from 'src/app/services/accounts/create-account.service';
 import { CreatePremiseAdminService } from 'src/app/services/accounts/create-premise-admin.service';
 import { CreatePremiseSettingsService } from 'src/app/services/accounts/create-premise-settings.service';
@@ -26,7 +27,8 @@ export class CreateAccountComponent {
     private createPremiseService: CreatePremiseService,
     private createPremiseAdminService:CreatePremiseAdminService,
     private createPremiseSettingsService:CreatePremiseSettingsService,
-    private authService:AuthService
+    private authService:AuthService,
+    private dialogRef: MatDialogRef<CreateAccountComponent>,
   ){
     this.authService.userData$.subscribe((res) => {
       let user = JSON.parse(res) 
@@ -128,7 +130,9 @@ export class CreateAccountComponent {
   }
 
 
-
+  closeDialog(){
+    this.dialogRef.close()
+  }
 
 
   get accountName(){

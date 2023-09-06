@@ -63,4 +63,9 @@ export class CreateLeaveReqComponent {
     return this.leaveForm.get('to')
   }
 
+  closeDialog(){
+    this.dialogRef.close()
+  }
+
+
 }
