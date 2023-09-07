@@ -160,6 +160,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
       
       this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
+        console.log(res)
         this.premiseCompanies = res?.message    
         
   

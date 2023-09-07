@@ -81,7 +81,8 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
 
 
     this.getStaffDetailsService.getStaffInfo(this.staffId).subscribe((res) => {
-      this.staff = res.message.info
+      this.staff = res.message.info 
+      console.log(this.staff)
     })
 
     this.getStaffShiftsService.getDetails(this.staffId, currentDate).subscribe((res) => {

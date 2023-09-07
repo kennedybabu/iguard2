@@ -31,6 +31,9 @@ export class CreateCompanySettingsComponent {
     appointment_approvals_designation : new FormControl('', Validators.required),
     excluded_appointments_designation : new FormControl(''),
     sms_name: new FormControl('', Validators.required),
+    staff_app_login: new FormControl('', Validators.required),
+    report_email: new FormControl('', Validators.required),
+    report_time: new FormControl('', Validators.required),
   })
 
   getSelectedRoles(event:any){

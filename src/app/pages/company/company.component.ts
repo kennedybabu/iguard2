@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UpdateCompanySettingsComponent } from 'src/app/components/company/update-company-settings/update-company-settings.component';
 import { AddShiftComponent } from 'src/app/components/company/add-shift/add-shift.component';
 import { CreateCompanyDeptComponent } from 'src/app/components/company/create-company-dept/create-company-dept.component';
@@ -41,7 +41,8 @@ export class CompanyComponent implements AfterViewInit, OnInit {
     private getCompanyAtendanceService: GetCompanyAttendanceService,
     private getCompanyDetailsService: GetCompanyDetailsService,
     private getCompanyDesignationsService:GetCompanyDesignationsService,
-    private getCompanySettingsService: GetCompanySettingsService
+    private getCompanySettingsService: GetCompanySettingsService,
+    private router:Router
     ){
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.currentPremise = res
@@ -65,6 +66,7 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
     this.getCompanyDepartmentsService.getDepartments(this.companyId).subscribe((res) => {
       this.companyDepartments = res.message
+      console.log(this.companyDepartments)
       this.dataSource.data = res.message
     })
 
@@ -164,7 +166,7 @@ export class CompanyComponent implements AfterViewInit, OnInit {
 
   createPremiseSettings() {
     const dialogRef = this.dialog.open(CreateCompanySettingsComponent, {
-      width:'450px', data: {
+      width:'470px', data: {
         companyId: this.companyId,
         companyDesignations: this.companyDesignations
       }
@@ -173,6 +175,11 @@ export class CompanyComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
    
     });
+  }
+
+
+  viewDepartment(id: number){
+    this.router.navigate(['department', id])
   }
 
 }

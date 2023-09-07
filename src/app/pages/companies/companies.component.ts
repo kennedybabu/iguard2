@@ -10,7 +10,6 @@ import {MatSort} from '@angular/material/sort';
 import { GetPremiseDetailsService } from 'src/app/services/premise/get-premise-details.service';
 import { CreateCompanyComponent } from 'src/app/components/company/create-company/create-company.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCompanySettingsComponent } from 'src/app/components/company/create-company-settings/create-company-settings.component';
 
 
 @Component({
@@ -29,7 +28,6 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
   constructor(
     private route:ActivatedRoute,
     private getPremiseCompaniesService:GetPremiseCompaniesService,
-    private currentPremiseService:CurrentPremiseService,
     private router:Router,
     private getPremiseDetailsService: GetPremiseDetailsService,
     private dialog:MatDialog
@@ -95,11 +93,11 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
-        if(res.statusCode === 702){
+    
           this.premiseCompanies = res.message
   
           this.dataSource.data = res.message
-        }
+  
       })
     });
   }

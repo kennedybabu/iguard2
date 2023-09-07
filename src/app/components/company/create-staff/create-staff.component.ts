@@ -1,8 +1,10 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CreateCompanyStaffService } from 'src/app/services/company/create-company-staff.service';
+import { GetCompanyDeptsService } from 'src/app/services/company/get-company-depts.service';
+import { GetCompanyDesignationsService } from 'src/app/services/company/get-company-designations.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 import { NotificationService } from 'src/app/services/shared/notification.service';
 
@@ -11,7 +13,7 @@ import { NotificationService } from 'src/app/services/shared/notification.servic
   templateUrl: './create-staff.component.html',
   styleUrls: ['./create-staff.component.scss']
 })
-export class CreateStaffComponent { 
+export class CreateStaffComponent implements OnInit { 
 
 
 
@@ -28,14 +30,14 @@ export class CreateStaffComponent {
     private notificationService:NotificationService,
     private currentPremiseService:CurrentPremiseService,
     private authService:AuthService,
-    private createCompanyStaffService:CreateCompanyStaffService
+    private createCompanyStaffService:CreateCompanyStaffService,
+    private getCompanyDeptsService:GetCompanyDeptsService,
+    private getCompanyDesignationsService:GetCompanyDesignationsService
   ){
-    this.companyDepts = data.companyDepts 
     this.companyId = data.companyId 
-    this.companyDesignations = data.companyDesignations
 
     this.currentPremiseService.premiseData$.subscribe((res) => {
-      let currentPremiseObject = res
+      let currentPremiseObject = JSON.parse(res)
       this.currentPremiseId = currentPremiseObject?.premise_id
     })
 
@@ -43,6 +45,19 @@ export class CreateStaffComponent {
       this.user = JSON.parse(res)
     })
 
+  }
+
+
+  ngOnInit(): void {
+    this.getCompanyDeptsService.getDepartments(this.companyId).subscribe((res) => {
+      this.companyDepts = res.message
+    })
+
+    this.getCompanyDesignationsService.getDesignations(this.companyId).subscribe((res) => {
+      this.companyDesignations = res.message
+
+      console.log(res)
+    })
   }
 
 

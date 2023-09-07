@@ -36,6 +36,7 @@ export class CreateCompanyComponent {
     this.createCompanyService.createCompany(this.createCompanyForm.value, this.currentPremise?.premise_id).subscribe((res) => {
       if(res) {
         this.notificationService.sendSuccessMessage('company added')
+        this.dialogRef.close()
       } else {
         this.notificationService.sendErrorMessage('something went wrong, try again')
       }

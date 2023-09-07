@@ -5,47 +5,45 @@
 
     <div class="row" style="min-height: 96vh;">
         <div class="col-md-3 border-right-light p-4 text-center">
-            <h2 class="dark-text mb-0">{{companyObject?.name}}</h2>
-            <small class="mb-0 light-text">{{companyObject?.description}}</small> 
+            <h2 class="dark-text mb-0">name</h2>
+            <small class="mb-0 light-text">description</small> 
 
-            <hr>
-            <button *ngIf="companySettings" class="mx-1" style="padding: .4rem;" (click)="updateCompanySettings()">Update Settings</button>
-            <button  class="mx-1" style="padding: .4rem;" (click)="createPremiseSettings()">Add Settings</button>
+            <hr>          
         </div>
 
         <div class="col-md-9 px-0">        
             <div class="row">
                 <div class="d-flex justify-content-between p-4 align-items-center">
                     <div>
-                        <h3 style="font-weight: bold;" class="mb-0">Premise Companies</h3>
-                        <small class="light-text">View company details</small>
+                        <h3 style="font-weight: bold;" class="mb-0">Company Department</h3>
+                        <small class="light-text">View department details</small>
                     </div>    
                 </div>
             </div>              
             <div>
                 <mat-tab-group>
-                    <mat-tab label="Departments">
+                    <mat-tab label="Designation">
                         <div class="row p-2">
                             <div class="d-flex flex-row-reverse">
-                                <button class="mx-1 primary-btn" style="padding: .4rem;"  (click)="createDepartment()">Add Department</button>
+                                <button class="mx-1 primary-btn" style="padding: .4rem;">Add Designation</button>
                                 <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Department">
                             </div>
                         </div>
                         <table mat-table [dataSource]="dataSource" matSort>  
             
                 
-                            <ng-container matColumnDef="department_name">
+                            <ng-container matColumnDef="name">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                            <td mat-cell *matCellDef="let row"> {{row.department_name}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
                             </ng-container>
                         
-                            <ng-container matColumnDef="narration">
+                            <ng-container matColumnDef="description">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header> Description  </th>
-                            <td mat-cell *matCellDef="let row"> {{row.narration}} </td>
+                            <td mat-cell *matCellDef="let row"> {{row.description}} </td>
                             </ng-container>
                         
                             <tr mat-header-row class="border-bottom-light border-top-light light-text" *matHeaderRowDef="displayedColumns"></tr>
-                            <tr style="cursor: pointer;" (click)="viewDepartment(row.depertment_id)" mat-row style="height: 35px;cursor: pointer;" class="table-rows" *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr style="cursor: pointer;"  mat-row style="height: 35px;cursor: pointer;" class="table-rows" *matRowDef="let row; columns: displayedColumns;"></tr>
                         
                             <tr class="mat-row" *matNoDataRow>
                             <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
@@ -55,20 +53,12 @@
                         <mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of users"></mat-paginator>
                     </mat-tab>
                     <mat-tab label="Staff">
-                        <app-company-staff [companyDesignations]="companyDesignations" [companyId]="companyId"></app-company-staff>
-                    </mat-tab>
-                    <mat-tab label="Shifts"> 
-                        <app-company-shifts [companyId]="companyId"></app-company-shifts>
-                    </mat-tab>
-                    <mat-tab label="Leave Types">
-                        <app-company-leaves [companyId]="companyId"></app-company-leaves>
-                    </mat-tab>
-                    <mat-tab label="Designations">
-                        <app-company-designations [companyId]="companyId"></app-company-designations>
+
                     </mat-tab>
                 </mat-tab-group>
             </div>             
         </div>
     </div>    
 </div>
+
 

@@ -1,9 +1,10 @@
-<div class="py-5">
+<div class="p-3">
     <div class="row flex-row-reverse text-end">
         <p class="mb-0 my-4 mx-1 close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
    </div>
-    <form [formGroup]="leaveForm" (submit)="onSubmit()" style="max-width: 500px;" class="mx-auto">
-        <h4 style="font-weight: bold;font-size: large;">Request Leave</h4>
+   <form [formGroup]="leaveForm" (submit)="onSubmit()" style="max-width: 500px;" class="mx-auto">
+    <h4 style="font-weight: bold;font-size: large;">Request Leave</h4>
+    <hr>
         <div class="form-group my-1">
             <label for="name">Name</label>
             <input formControlName="name" class="form-control" type="text" name="name" id="name" placeholder="Name">
@@ -18,7 +19,7 @@
             <mat-label>Enter a date range</mat-label>
             <mat-date-range-input [rangePicker]="rangePicker">
               <input matStartDate formControlName="from" >
-              <input matEndDate formControlName="to">
+              <input matEndDate (change)="isLeaveMoreThanADay()" formControlName="to">
             </mat-date-range-input>
             <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
             <mat-date-range-picker #rangePicker>
@@ -28,16 +29,12 @@
               </mat-date-range-picker-actions>
             </mat-date-range-picker>
         </div>   
-        <!-- <div class="form-group my-1">
-             <label for="from">From</label>
-             <input formControlName="from" class="form-control" type="datetime-local" name="reason" id="from" placeholder="start">
-             <small *ngIf="from?.invalid && from?.touched" style="color: rgb(240, 79, 79);">*Required</small>
-         </div>    
-         <div class="form-group my-1">
-             <label for="to">To</label>
-             <input formControlName="to" class="form-control" type="datetime-local" name="to" id="to" placeholder="end">
-             <small *ngIf="to?.invalid && to?.touched" style="color: rgb(240, 79, 79);">*Required</small>
-         </div>          -->
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="MORNING">Morning</option>
+            <option value="AFTERNOON">Afternoon</option>
+            <option value="NA">NA</option>
+        </select>
         <button [disabled]="leaveForm.invalid"  type="submit" class="my-2" style="width: max-content;padding: .4rem;">Submit</button>
     </form>
 </div>

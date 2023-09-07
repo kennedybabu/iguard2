@@ -15,6 +15,7 @@ export class CreateLeaveReqComponent {
 
   staffId!: number
   premiseId!: number
+  leave : boolean = false
 
 
   constructor(
@@ -26,13 +27,16 @@ export class CreateLeaveReqComponent {
       this.currentPremiseService.premiseData$.subscribe((res) => {
         this.premiseId = JSON.parse(res)?.premise_id
       })
+
+      console.log(this.leave)
     }
 
   leaveForm = new FormGroup({
     reason: new FormControl('',  Validators.required),
     name: new FormControl('',  Validators.required),
     from: new FormControl('',  Validators.required),
-    to: new FormControl('', Validators.required)
+    to: new FormControl('', Validators.required),
+    time_day: new FormControl('', Validators.required)
   })
 
 
@@ -65,6 +69,12 @@ export class CreateLeaveReqComponent {
 
   closeDialog(){
     this.dialogRef.close()
+  }
+
+
+  isLeaveMoreThanADay(){
+    this.leave = !this.leave 
+    console.log(this.leave)
   }
 
 

@@ -68,7 +68,7 @@ export class CompanyStaffComponent implements OnInit, AfterViewInit {
 
   createStaff() {
     const dialogRef = this.dialog.open(CreateStaffComponent, {
-      width:'450px', height: '600px', data: {
+      width:'450px', height: '700px', data: {
         companyId: this.companyId,
         companyDepts: this.companyDepts,
         companyDesignations: this.companyDesignations

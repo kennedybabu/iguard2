@@ -14,7 +14,9 @@ export class CreateCompanyService {
     private authService:AuthService
   ) {
     this.authService.userData$.subscribe((res) => {
-      this.user = res
+      this.user = JSON.parse(res)
+
+      console.log(this.user)
     })
    } 
 
@@ -25,10 +27,12 @@ export class CreateCompanyService {
         "name": formValue.name,
         "description": formValue.description,
         "premise": premiseId,
-        "created_by": this.user?.user_id
+        "created_by": this.user?.userId
       },
       "requestService": "CREATE_ACCOUNT_COMPANY_RULE"
     }
+
+    console.log(jsonObject)
     return this.http.post('https://iguardbe.helapay.africa/api/GateGuard', jsonObject)
   }
 }

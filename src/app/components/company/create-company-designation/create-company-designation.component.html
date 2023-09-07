@@ -1,0 +1,22 @@
+<div class="p-3">
+    <h2 class="mb-0">Add Company Role</h2>
+    <hr>
+    <form [formGroup]="designationForm" (submit)="onFormSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label> 
+            <input formControlName="name" type="text" name="name" id="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">description</label> 
+            <input formControlName="description" type="text" name="description" id="description" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label>Department</label>
+            <select  class="form-select" formControlName="department">
+                <option value="" disabled>Choose...</option>
+                <option *ngFor="let dept of companyDepartments"  [ngValue]="dept.depertment_id">{{dept.department_name}}</option>             
+            </select>
+        </div> 
+        <button class="btn btn-outline-success btn-sm mt-3" style="border-radius: 0;">Add Company</button>
+    </form>
+</div>

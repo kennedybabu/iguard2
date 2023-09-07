@@ -12,6 +12,7 @@ import { StaffLoginComponent } from './pages/staff-login/staff-login.component';
 import { AuthGuard } from './auth.guard';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
+import { DepartmentComponent } from './pages/department/department.component';
 
 
 
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path:'staff-login', component: StaffLoginComponent},
   {path:'staff-profile/:id', component: StaffProfileComponent,  canActivate: [AuthGuard]},
   {path:'notifications/:id',component: NotificationsComponent},
-  {path: 'accounts',component: AccountsComponent} 
+  {path: 'accounts',component: AccountsComponent},
+  {path:'department/:id', component: DepartmentComponent} 
 ];
 
 @NgModule({
