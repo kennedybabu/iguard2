@@ -6,6 +6,7 @@ import { Shift } from 'src/app/model/shift';
 import { GetCompanyShiftsService } from 'src/app/services/company/get-company-shifts.service';
 import { AddShiftComponent } from '../add-shift/add-shift.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-shifts',
@@ -18,7 +19,8 @@ export class CompanyShiftsComponent implements AfterViewInit, OnInit {
   companyShifts: any [] = []
 
   constructor(private getCompanyShiftsService: GetCompanyShiftsService,
-    private dialog: MatDialog){ }
+    private dialog: MatDialog,
+    private router:Router){ }
 
 
   ngOnInit(): void {
@@ -66,6 +68,11 @@ export class CompanyShiftsComponent implements AfterViewInit, OnInit {
         this.dataSource.data = res.message
       })
     });
+  }
+
+
+  viewShift(id: number){
+    this.router.navigate(['shift-details', id])
   }
 
 }

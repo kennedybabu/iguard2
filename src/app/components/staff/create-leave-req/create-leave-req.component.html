@@ -2,14 +2,16 @@
     <div class="row flex-row-reverse text-end">
         <p class="mb-0 my-4 mx-1 close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
    </div>
-   <form [formGroup]="leaveForm" (submit)="onSubmit()" style="max-width: 500px;" class="mx-auto">
+   <form [formGroup]="leaveForm" (submit)="onSubmit()"  class="mx-auto">
     <h4 style="font-weight: bold;font-size: large;">Request Leave</h4>
     <hr>
-        <div class="form-group my-1">
-            <label for="name">Name</label>
-            <input formControlName="name" class="form-control" type="text" name="name" id="name" placeholder="Name">
-            <small *ngIf="name?.invalid && name?.touched" style="color: rgb(240, 79, 79);">*Required</small>
-        </div>
+        <div class="form-group mb-3">
+            <label>Leave Request Type</label>
+            <select  class="form-select" formControlName="name">
+                <option value="" disabled>Choose...</option>
+                <option *ngFor="let tag of leaveTypes"  [ngValue]="tag.id">{{tag.name}}</option>             
+            </select>
+        </div> 
         <div class="form-group my-1">
             <label for="reason">Reason</label>
             <input formControlName="reason" class="form-control" type="text" name="reason" id="reason" placeholder="reason">
@@ -35,6 +37,6 @@
             <option value="AFTERNOON">Afternoon</option>
             <option value="NA">NA</option>
         </select>
-        <button [disabled]="leaveForm.invalid"  type="submit" class="my-2" style="width: max-content;padding: .4rem;">Submit</button>
+        <button   type="submit" class="my-2" style="width: max-content;padding: .4rem;">Submit</button>
     </form>
 </div>

@@ -5,7 +5,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Company } from 'src/app/model/company';
 import { Premise } from 'src/app/model/premise';
 import { GetPremiseCompaniesService } from 'src/app/services/company/get-premise-companies.service';
-import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
 import {MatSort} from '@angular/material/sort';
 import { GetPremiseDetailsService } from 'src/app/services/premise/get-premise-details.service';
 import { CreateCompanyComponent } from 'src/app/components/company/create-company/create-company.component';

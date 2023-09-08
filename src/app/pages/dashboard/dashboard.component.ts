@@ -211,6 +211,7 @@ export class DashboardComponent implements OnInit {
       })
 
       this.getPremiseAttendanceService.getAttendance(this.premiseId).subscribe((res) => {
+        console.log(res)
         this.premiseAttendance = res.message  
 
         for(let attendance of this.premiseAttendance) {
@@ -219,9 +220,6 @@ export class DashboardComponent implements OnInit {
           this.startedShifts.push(started)
           this.pendingShifts.push(pending)
           this.endedShifts.push(ended)
-
-          // this.chartOptions.labels = this.companyNames 
-
         }
 
 

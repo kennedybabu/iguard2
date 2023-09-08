@@ -15,7 +15,7 @@ export class CreateLeaveReqService {
 
     let startstamp = new Date(start).getTime()
     let endstamp = new Date(end).getTime()
-
+    console.log('called service')
 
 
     let jsonObject = {

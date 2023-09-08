@@ -56,6 +56,10 @@ import { CompanyLeavesComponent } from './components/company/company-leaves/comp
 import { DepartmentComponent } from './pages/department/department.component';
 import { CompanyDesignationsComponent } from './components/company/company-designations/company-designations.component';
 import { CreateCompanyDesignationComponent } from './components/company/create-company-designation/create-company-designation.component';
+import { ShiftDetailsComponent } from './pages/shift-details/shift-details.component';
+import { PremiseAppointmentTagsComponent } from './components/premise/premise-appointment-tags/premise-appointment-tags.component';
+import { CreatePremiseAppointmentTagComponent } from './components/premise/create-premise-appointment-tag/create-premise-appointment-tag.component';
+import { UnassignedStaffComponent } from './components/company/unassigned-staff/unassigned-staff.component';
 
 
 
@@ -94,6 +98,11 @@ import { CreateCompanyDesignationComponent } from './components/company/create-c
     DepartmentComponent,
     CompanyDesignationsComponent,
     CreateCompanyDesignationComponent,
+    ShiftDetailsComponent,
+    PremiseAppointmentTagsComponent,
+    CreatePremiseAppointmentTagComponent,
+    UnassignedStaffComponent,
+
   ],
   imports: [
     BrowserModule,

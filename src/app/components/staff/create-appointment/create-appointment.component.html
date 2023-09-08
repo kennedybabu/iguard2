@@ -1,15 +1,15 @@
-<div class="p-5">
+<div class="p-3">
     <div class="row flex-row-reverse text-end">
         <p class="mb-0 my-4 mx-1 close" style="cursor: pointer;font-size: 1.5rem;font-weight: bold;" (click)="closeDialog()"><i class="bi bi-x"></i></p>
    </div> 
     <h2 class="mb-0">Guest Appointment</h2>
-
+    <hr>
     <form [formGroup]="createAppointmentForm" (submit)="createAppointment()">
           
         <div class="form-group">
             <label for="visitor_name">Name</label>
             <input formControlName="visitor_name" type="text" id="visitor_name" class="form-control">
-        </div>
+        </div>  
         <!-- <div class="row">
             <div class="form-group  col">
                 <label for="appointment_start">Start Time</label>
@@ -20,19 +20,22 @@
                 <input formControlName="appointment_end" type="datetime-local" name="appointment_end" id="appointment_end" class="form-control">
             </div>
         </div> -->
-        <div>
-            <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input [rangePicker]="rangePicker">
-              <input matStartDate formControlName="appointment_start">
-              <input matEndDate formControlName="appointment_end">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
-            <mat-date-range-picker style="width: 100%;" #rangePicker>
-              <mat-date-range-picker-actions>
-                <button style="padding: .4rem;" mat-button mat-button color="primary" matDateRangePickerCancel>Cancel</button>
-                <button style="padding: .4rem;" mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
-              </mat-date-range-picker-actions>
-            </mat-date-range-picker>
+        <div class="my-3">
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput formControlName="appointment_start" [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Repeating Appointment ? No/Yes</label>
+            <input formControlName="repeat" style="cursor: pointer;" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        </div>
+        <div class="form-group">
+            <label for="duration">Duration</label> 
+            <input formControlName="duration" type="time" step="900" name="duration" id="duration" class="form-control">
         </div>
         <div class="form-group">
             <label for="email">Email</label> 
@@ -46,6 +49,7 @@
             <label for="narration">Description</label> 
             <textarea formControlName="narration" name="narration" id="narration" style="border-radius: 0;" class="form-control"></textarea>
         </div>
+   
         <button style="border-radius: 0;padding: .4rem;" class="my-2">Add Appointment</button>
     </form>
 </div>

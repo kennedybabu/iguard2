@@ -36,7 +36,8 @@ export class CreateAppointmentComponent {
     msisdn: new FormControl('', Validators.required),
     narration: new FormControl('', Validators.required),
     appointment_start: new FormControl(''),
-    appointment_end: new FormControl('')
+    duration: new FormControl(''),
+    repeat: new FormControl('', Validators.required)
   })
 
   createAppointment() {

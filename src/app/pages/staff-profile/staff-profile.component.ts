@@ -41,6 +41,7 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
   staffAppointments: Appointment [] = []
   approvedAppointments:any [] = []
   userRole!: any  
+  companyId!: number
 
 
   public eventSettings: EventSettingsModel = { }
@@ -82,7 +83,10 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
 
     this.getStaffDetailsService.getStaffInfo(this.staffId).subscribe((res) => {
       this.staff = res.message.info 
+
       console.log(this.staff)
+
+      this.companyId = this.staff.company
     })
 
     this.getStaffShiftsService.getDetails(this.staffId, currentDate).subscribe((res) => {
@@ -201,6 +205,7 @@ export class StaffProfileComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CreateLeaveReqComponent, {
       width: '600px', data: {
         staffId: this.staffId,
+        companyId: this.companyId
       }
     });
 

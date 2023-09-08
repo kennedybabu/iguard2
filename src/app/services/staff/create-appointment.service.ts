@@ -11,11 +11,8 @@ export class CreateAppointmentService {
 
   createAppointment(formvalue: any,staffId: number, departmentId: number): Observable<any>{   
     let time = formvalue.appointment_start
-    let end = formvalue.appointment_end
     let convertedTime = new Date(time).getTime() 
-    let convertedEndTime = new Date(end).getTime()
     let timeInSecs = Math.floor(convertedTime)
-    let endTime = Math.floor(convertedEndTime)
 
 
     let jsonObject = {
@@ -27,7 +24,8 @@ export class CreateAppointmentService {
         "email":formvalue.email,
         "narration": formvalue.narration,
         "appointment_start": timeInSecs,
-        "appointment_end": endTime,
+        "duration": formvalue.duration,
+        "repeat_mode": formvalue.repeat_mode
       },
       "requestService": "CREATE_APPOINTMENT_RULE"  
     }

@@ -34,7 +34,7 @@
         </ng-container>
     
         <tr mat-header-row class="border-bottom-light border-top-light light-text" *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row style="height: 35px;cursor: pointer;" class="table-rows" *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr (click)="viewShift(row.id)" mat-row style="height: 35px;cursor: pointer;" class="table-rows" *matRowDef="let row; columns: displayedColumns;"></tr>
     
         <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>

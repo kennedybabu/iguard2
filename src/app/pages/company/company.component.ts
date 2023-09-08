@@ -14,9 +14,7 @@ import { GetCompanyDeptsService } from 'src/app/services/company/get-company-dep
 import { GetCompanyDesignationsService } from 'src/app/services/company/get-company-designations.service';
 import { GetCompanyDetailsService } from 'src/app/services/company/get-company-details.service';
 import { GetCompanySettingsService } from 'src/app/services/company/get-company-settings.service';
-import { UpdateCompanySettingsService } from 'src/app/services/company/update-company-settings.service';
 import { CurrentPremiseService } from 'src/app/services/shared/current-premise.service';
-import { CreateCompanyLeaveComponent } from 'src/app/components/company/create-company-leave/create-company-leave.component';
 
 @Component({
   selector: 'app-company',

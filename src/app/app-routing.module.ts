@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { DepartmentComponent } from './pages/department/department.component';
+import { ShiftDetailsComponent } from './pages/shift-details/shift-details.component';
 
 
 
@@ -39,7 +40,8 @@ const routes: Routes = [
   {path:'staff-profile/:id', component: StaffProfileComponent,  canActivate: [AuthGuard]},
   {path:'notifications/:id',component: NotificationsComponent},
   {path: 'accounts',component: AccountsComponent},
-  {path:'department/:id', component: DepartmentComponent} 
+  {path:'department/:id', component: DepartmentComponent},
+  {path: 'shift-details/:id', component: ShiftDetailsComponent} 
 ];
 
 @NgModule({
