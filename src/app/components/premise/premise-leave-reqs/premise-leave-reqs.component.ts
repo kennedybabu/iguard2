@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Staff } from 'src/app/model/staff';
 import { GetPremiseLeaveRequestsService } from 'src/app/services/leave-req/get-premise-leave-requests.service';
+import { ChangeLeaveReqsStatusService } from 'src/app/services/notifications/change-leave-reqs-status.service';
+import { NotificationService } from 'src/app/services/shared/notification.service';
 
 @Component({
   selector: 'app-premise-leave-reqs',
@@ -16,6 +18,8 @@ export class PremiseLeaveReqsComponent implements OnInit, AfterViewInit {
 
   premiseLeaveRequests: any [] = []
 
+  currentDate!: any
+
   displayedColumns: string[] = ['staff_name', 'reason', 'requested_from', 'status', 'action'];
   dataSource = new MatTableDataSource<Staff>;
 
@@ -23,11 +27,18 @@ export class PremiseLeaveReqsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private getPremiseLeaveReqsService:GetPremiseLeaveRequestsService){}
+  constructor(private getPremiseLeaveReqsService:GetPremiseLeaveRequestsService,
+    private changeLeaveReqsStatusService:ChangeLeaveReqsStatusService,
+    private notificationService:NotificationService,
+    private  getPremiseLeaveReqServices:GetPremiseLeaveRequestsService){}
 
   ngOnInit(): void {
-    this.getPremiseLeaveReqsService.getDetails(this.premiseId, this.premiseId).subscribe((res)=> {
-      this.dataSource.data = res.message
+    this.currentDate = new Date()  
+
+
+    this.getPremiseLeaveReqsService.getDetails(this.currentDate, this.premiseId).subscribe((res)=> {
+      console.log(this.premiseId, res)
+      this.dataSource.data = res.message.info
     })
     
   }
@@ -45,6 +56,21 @@ export class PremiseLeaveReqsComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  approveLeave(reqid:number, action:string){
+    this.changeLeaveReqsStatusService.changeStatus(reqid, action).subscribe((res) => {
+      if(res.statusCode === 702){
+        this.notificationService.sendSuccessMessage(res.message)
+        this.getPremiseLeaveReqServices.getDetails(this.currentDate, this.premiseId).subscribe((res) => {
+          this.dataSource.data = res.message.info
+        })
+      } else {
+        this.notificationService.sendErrorMessage('something went wrong,try again')
+
+      }
+    })
   }
 
 

@@ -48,6 +48,7 @@ export class NotificationsComponent implements OnInit {
 
 
     this.getPremiseAppointmentsService.getPremiseAppointments(this.premiseId).subscribe((res) => {
+      console.log(res)
       this.premiseAppointments = res.message.info
       
     })

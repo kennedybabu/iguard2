@@ -200,6 +200,7 @@ export class DashboardComponent implements OnInit {
 
 
       this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
+        console.log(res)
         this.premiseAppointments = res?.message.info
         this.splicedAppointments = this.premiseAppointments.slice(0,4)
       })
@@ -211,7 +212,6 @@ export class DashboardComponent implements OnInit {
       })
 
       this.getPremiseAttendanceService.getAttendance(this.premiseId).subscribe((res) => {
-        console.log(res)
         this.premiseAttendance = res.message  
 
         for(let attendance of this.premiseAttendance) {
@@ -282,7 +282,7 @@ export class DashboardComponent implements OnInit {
         this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
           this.premiseAppointments = res?.message.info
         })
-      }else if(res.statusCode === 702 ){      
+      } else if(res.statusCode === 702 ){      
         this.notificationService.sendSuccessMessage(res.message)
         this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
           this.premiseAppointments = res?.message.info

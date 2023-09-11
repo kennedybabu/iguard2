@@ -34,10 +34,12 @@ export class CreateLeaveReqComponent implements OnInit {
         this.premiseId = JSON.parse(res)?.premise_id
         })
 
-        this.companyId = data.companyId
+        this.companyId = data.companyId       
 
       console.log(this.leave)
+      this.staffId  = data.staffId
     }
+
 
 
     // if(res.statusCode === 700){
@@ -53,6 +55,9 @@ export class CreateLeaveReqComponent implements OnInit {
       console.log(this.companyId, res)
       this.leaveTypes = res.message
     })
+
+
+    
   }
 
   leaveForm = new FormGroup({

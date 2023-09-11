@@ -23,6 +23,7 @@ export class CreateAppointmentComponent {
     private createAppointmentService:CreateAppointmentService)
   {
     this.departmentId = data.departmentId
+    this.staffId = data.staffId
 
     this.currentPremiseService.premiseData$.subscribe((res) => {
       this.premiseId = JSON.parse(res)?.premise_id
@@ -41,7 +42,7 @@ export class CreateAppointmentComponent {
   })
 
   createAppointment() {
-    this.createAppointmentService.createAppointment(this.createAppointmentForm.value, this.staffId, this.premiseId).subscribe((res) => {
+    this.createAppointmentService.createAppointment(this.createAppointmentForm.value, this.staffId, this.departmentId).subscribe((res) => {
       if(res.statusCode === 702) {
         this.notificationService.sendSuccessMessage('appointment created')
         this.dialogRef.close()

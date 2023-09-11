@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Staff } from 'src/app/model/staff';
 import { GetCompanyShiftStaffService } from 'src/app/services/company/get-company-shift-staff.service';
-import { GetShiftDetailsService } from 'src/app/services/company/get-shift-details.service';
 
 @Component({
   selector: 'app-shift-details',
@@ -17,6 +16,7 @@ export class ShiftDetailsComponent implements OnInit, AfterViewInit {
   shiftId!: number
   shiftObject!: any
   companyId!: number
+  companyStaff: any [] = []
 
   displayedColumns: string[] = ['firstName', 'msisdn'];
   dataSource = new MatTableDataSource<Staff>;
@@ -40,12 +40,17 @@ export class ShiftDetailsComponent implements OnInit, AfterViewInit {
       }
     )
 
+
     this.getCompanyShiftStaffService.getStaff(this.shiftId).subscribe((res) => {
      this.shiftObject = res.message
       
       this.dataSource.data = res.message.assignedStaff
 
-      console.log(res.message.assignedStaff)
+      this.companyStaff = res.message.assignedStaff
+
+      this.companyId = +this.shiftObject.company 
+
+      console.log(this.companyId)
     })
 
 

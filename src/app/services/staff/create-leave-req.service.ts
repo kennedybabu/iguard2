@@ -15,7 +15,6 @@ export class CreateLeaveReqService {
 
     let startstamp = new Date(start).getTime()
     let endstamp = new Date(end).getTime()
-    console.log('called service')
 
 
     let jsonObject = {
@@ -25,7 +24,9 @@ export class CreateLeaveReqService {
         "name": formValue.name,
         "from": startstamp,
         "to": endstamp,
-        "premise": premiseId
+        "premise": premiseId,
+        "type": formValue.type,
+        "time_day": formValue.time_day
       },
       "requestService": "CREATE_LEAVE_REQUEST_RULE"  
     }

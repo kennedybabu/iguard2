@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Staff } from 'src/app/model/staff';
+import { GetCompanyStaffService } from 'src/app/services/company/get-company-staff.service';
 
 @Component({
   selector: 'app-unassigned-staff',
@@ -12,9 +13,14 @@ import { Staff } from 'src/app/model/staff';
 })
 export class UnassignedStaffComponent implements OnInit, AfterViewInit  {
 
-  @Input() companyId!: number
+  @Input() companyId!: number 
+  @Input() shiftId!: number
+  companyStaff:any [] = []
+  // @Input()
 
-  constructor(private router:Router){}
+  constructor(private router:Router,
+    private getCompanyStaffService:GetCompanyStaffService){
+    }
 
   displayedColumns: string[] = ['firstName', 'msisdn', 'email', 'designation', 'fingerprint', 'action'];
   dataSource = new MatTableDataSource<Staff>;
@@ -23,7 +29,10 @@ export class UnassignedStaffComponent implements OnInit, AfterViewInit  {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-    
+    this.getCompanyStaffService.getStaff(13).subscribe((res) => {
+      console.log(res, this.shiftId,res)
+      this.dataSource.data = res?.message?.filter((item: Staff) => Object.keys(item.assignedShift).length === 0)
+    })
   }
 
 

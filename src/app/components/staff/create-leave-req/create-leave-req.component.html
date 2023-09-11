@@ -7,11 +7,15 @@
     <hr>
         <div class="form-group mb-3">
             <label>Leave Request Type</label>
-            <select  class="form-select" formControlName="name">
+            <select  class="form-select" formControlName="type">
                 <option value="" disabled>Choose...</option>
                 <option *ngFor="let tag of leaveTypes"  [ngValue]="tag.id">{{tag.name}}</option>             
             </select>
         </div> 
+        <div class="form-group">
+            <label for="name">Name</label> 
+            <input formControlName="name" type="text" name="name" id="name" class="form-control">
+        </div>
         <div class="form-group my-1">
             <label for="reason">Reason</label>
             <input formControlName="reason" class="form-control" type="text" name="reason" id="reason" placeholder="reason">
@@ -31,11 +35,11 @@
               </mat-date-range-picker-actions>
             </mat-date-range-picker>
         </div>   
-        <select class="form-select" aria-label="Default select example">
+        <select formControlName="time_day" class="form-select" aria-label="Default select example">
             <option selected>Open this select menu</option>
             <option value="MORNING">Morning</option>
             <option value="AFTERNOON">Afternoon</option>
-            <option value="NA">NA</option>
+            <option value="N/A">NA</option>
         </select>
         <button   type="submit" class="my-2" style="width: max-content;padding: .4rem;">Submit</button>
     </form>

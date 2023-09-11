@@ -24,8 +24,8 @@ export class CreateAppointmentService {
         "email":formvalue.email,
         "narration": formvalue.narration,
         "appointment_start": timeInSecs,
-        "duration": formvalue.duration,
-        "repeat_mode": formvalue.repeat_mode
+        "duration": +formvalue.duration,
+        "repeat": formvalue.repeat
       },
       "requestService": "CREATE_APPOINTMENT_RULE"  
     }
