@@ -27,7 +27,6 @@ export class ShiftDetailsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route:ActivatedRoute,
-    // private getShiftDetailsService:GetShiftDetailsService,
     private getCompanyShiftStaffService:GetCompanyShiftStaffService,
     private router:Router
   ){}
@@ -53,10 +52,6 @@ export class ShiftDetailsComponent implements OnInit, AfterViewInit {
       console.log(this.companyId)
     })
 
-
-    // this.getShiftDetailsService.getDetails(this.shiftId).subscribe((res) => {
-    //   console.log(res)
-    // })
   }
 
 

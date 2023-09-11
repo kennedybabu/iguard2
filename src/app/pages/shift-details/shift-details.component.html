@@ -26,7 +26,6 @@
                         <div>
                             <div class="row p-2">
                                 <div class="d-flex flex-row-reverse align-items-end">
-                                    <button class="mx-1 primary-btn" style="padding: .4rem;">Add Staff</button>
                                     <input class="light-sm-border" type="text" matInput (keyup)="applyFilter($event)"  #input style="width: 200px;padding: .5rem;" placeholder="Search Staff">
                                 </div>
                             </div>
@@ -55,6 +54,9 @@
                     </mat-tab>
                     <mat-tab label="Unassigned Company Staff">
                         <app-unassigned-staff [shiftId]="shiftId" [companyId]="companyId"></app-unassigned-staff>
+                    </mat-tab>
+                    <mat-tab label="Shift Breaks">
+                        <app-shift-breaks [shiftId]="shiftId"></app-shift-breaks>
                     </mat-tab>
                 </mat-tab-group>
             </div>             

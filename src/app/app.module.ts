@@ -60,6 +60,8 @@ import { ShiftDetailsComponent } from './pages/shift-details/shift-details.compo
 import { PremiseAppointmentTagsComponent } from './components/premise/premise-appointment-tags/premise-appointment-tags.component';
 import { CreatePremiseAppointmentTagComponent } from './components/premise/create-premise-appointment-tag/create-premise-appointment-tag.component';
 import { UnassignedStaffComponent } from './components/company/unassigned-staff/unassigned-staff.component';
+import { ShiftBreaksComponent } from './components/shift/shift-breaks/shift-breaks.component';
+import { CreateShiftBreakComponent } from './components/shift/create-shift-break/create-shift-break.component';
 
 
 
@@ -102,6 +104,8 @@ import { UnassignedStaffComponent } from './components/company/unassigned-staff/
     PremiseAppointmentTagsComponent,
     CreatePremiseAppointmentTagComponent,
     UnassignedStaffComponent,
+    ShiftBreaksComponent,
+    CreateShiftBreakComponent,
 
   ],
   imports: [
