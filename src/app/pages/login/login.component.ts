@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 // import * as CryptoJs from 'crypto-js';
 
 
-import { KEY } from 'src/key';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/shared/notification.service';
@@ -26,7 +25,7 @@ export class LoginComponent {
   error!: string
 
   private userDataSubject: BehaviorSubject<any> = new BehaviorSubject(null)
-userDate$: Observable<any> = this.userDataSubject.asObservable()
+  userDate$: Observable<any> = this.userDataSubject.asObservable()
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),

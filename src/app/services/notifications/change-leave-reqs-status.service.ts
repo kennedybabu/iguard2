@@ -15,7 +15,7 @@ export class ChangeLeaveReqsStatusService {
     private authService:AuthService) { 
       this.authService.userData$.subscribe((res) => {
         let user = JSON.parse(res)
-        this.accountId = user?.accountId
+        this.accountId = user?.userId
       })
     } 
 

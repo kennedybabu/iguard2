@@ -199,7 +199,7 @@ export class DashboardComponent implements OnInit {
       }
 
 
-      this.getPremiseAppointmntService.getPremiseAppointments(this.showingPremiseId).subscribe((res) => {
+      this.getPremiseAppointmntService.getPremiseAppointments(this.storedPremise.premise_id).subscribe((res) => {
         console.log(res)
         this.premiseAppointments = res?.message.info
         this.splicedAppointments = this.premiseAppointments.slice(0,4)
