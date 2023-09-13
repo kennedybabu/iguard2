@@ -62,6 +62,7 @@ import { CreatePremiseAppointmentTagComponent } from './components/premise/creat
 import { UnassignedStaffComponent } from './components/company/unassigned-staff/unassigned-staff.component';
 import { ShiftBreaksComponent } from './components/shift/shift-breaks/shift-breaks.component';
 import { CreateShiftBreakComponent } from './components/shift/create-shift-break/create-shift-break.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -129,7 +130,8 @@ import { CreateShiftBreakComponent } from './components/shift/create-shift-break
     MatDialogModule,
     FormsModule,
     ScheduleModule, 
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatTooltipModule
     
   ],
   providers: [
