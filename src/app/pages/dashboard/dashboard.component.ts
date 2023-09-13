@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
   storedPremise!: any
   premiseId!: number
   premiseCompanies: any [] = []
-  totalStaff!: number
+  totalStaff = 0
   premiseLeaveRequest: any [] = []
   splicedAppointments: any []= []
   splicedeLeaveRequests: any [] = []
@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
   pendingShifts: any [] = []
   endedShifts: any [] = []
   startedShifts: any [] = []
-  companyNames: any [] = []
+  companyNames: string [] = []
 
 
 
@@ -90,6 +90,8 @@ export class DashboardComponent implements OnInit {
     private notificationService:NotificationService,
     private getPremiseAttendanceService:GetPremiseAttendanceService
     ){
+
+    
 
       this.chartOptions = {
         series: [    
@@ -161,19 +163,12 @@ export class DashboardComponent implements OnInit {
       
       this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
         console.log(res)
-        this.premiseCompanies = res?.message    
+        this.premiseCompanies = res?.message
         
-  
-      this.totalStaff = 0 
-  
-      //get total staff in the premise
-      for(let company of this.premiseCompanies) {
-        this.totalStaff += company.staff_count
-
-        this.companyNames.push(company.name)
-      }
-
+        this.startProcessing()
     })
+
+
 
 
     this.currentDate = new Date() 
@@ -236,6 +231,22 @@ export class DashboardComponent implements OnInit {
     }) 
     
     //
+  }
+
+
+  processCompany(index: number){
+    if(index < this.premiseCompanies.length) {
+      const company = this.premiseCompanies[index]
+      this.totalStaff += company.staff_count 
+      this.companyNames.push(company.name)
+
+      this.processCompany(index + 1)
+
+    }
+  }
+
+  startProcessing(){
+    this.processCompany(0)
   }
 
 

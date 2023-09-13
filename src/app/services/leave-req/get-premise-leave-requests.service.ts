@@ -16,7 +16,7 @@ export class GetPremiseLeaveRequestsService {
     const currentTime = new Date(time)
 
 
-    const startDate = new Date(currentTime.getTime() - 30 * 24 * 60 * 60 * 1000)
+    const startDate = new Date(currentTime.getTime() - 1 * 24 * 60 * 60 * 1000)
     const startYear = startDate.getFullYear()
     const startMonth = String(startDate.getMonth() + 1).padStart(2, '0')
     const startDay = String(startDate.getDate()).padStart(2, '0')

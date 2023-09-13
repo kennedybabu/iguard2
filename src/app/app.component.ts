@@ -72,14 +72,6 @@ export class AppComponent {
           this.successNotification = ''
         }, 2000)
       })
-
-  }
-
-
-  update(){
-    this.getAccountsService.getAccounts().subscribe((res) => {
-      console.log('logged')
-    })
   }
 
   
@@ -93,7 +85,7 @@ export class AppComponent {
   logout(){
     localStorage.removeItem('ulpSaH5wx1pO!E')
     localStorage.removeItem('currentPremise')
-    this.update()
+    window.location.reload()
     this.router.navigate(['login'])
   }
 
