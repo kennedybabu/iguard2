@@ -164,12 +164,9 @@ export class DashboardComponent implements OnInit {
       this.getPremiseCompaniesService.getCompanies(this.premiseId).subscribe((res) => {
         console.log(res)
         this.premiseCompanies = res?.message
-        
+
         this.startProcessing()
-    })
-
-
-
+      })
 
     this.currentDate = new Date() 
 
@@ -177,6 +174,8 @@ export class DashboardComponent implements OnInit {
     this.getAllPremisesService.getPremises(this.activeUser?.accountId).subscribe((res: any) => {
       if(res.statusCode === 702) {
         this.premises = res.message 
+
+        console.log(this.premises)
 
         let item = localStorage.getItem('currentPremise') 
 

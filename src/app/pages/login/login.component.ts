@@ -19,7 +19,10 @@ export class LoginComponent {
   constructor(private authService:AuthService,
     private router:Router,
     private notificationService:NotificationService){
-
+        if(localStorage.getItem('ulpSaH5wx1pO!E')) {
+        const user = (<string>localStorage.getItem('ulpSaH5wx1pO!E'))
+        this.userDataSubject.next(user)
+      }
   }
 
   error!: string

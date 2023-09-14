@@ -65,7 +65,6 @@ export class StaffLoginComponent {
             this.notificationService.sendSuccessMessage('logged in successful')
             this.router.navigate(['staff-profile', +this.id])
           } else {
-            console.log(res)
             this.notificationService.sendErrorMessage(res.message)
           }
         })
